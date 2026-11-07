@@ -1,0 +1,39 @@
+---
+import FaqList from "@/components/home/FaqList.astro"
+import { FAQ } from "@/data/faq"
+import Layout from "@/layouts/main.astro"
+import { breadcrumbs, faqPage } from "@/lib/schema"
+---
+
+<Layout
+  title="Reel Studio Kit FAQ: Requirements, Refunds, Licence"
+  description="Answers about Reel Studio Kit: what it is, what you need to run it, API keys, Hindi support, delivery, refunds, your licence and who appears on your statement."
+  path="/faq"
+  jsonLd={[breadcrumbs([{ name: "FAQ", path: "/faq" }]), faqPage(FAQ)]}
+>
+  <div class="wrap page">
+    <header>
+      <p class="kicker">// questions</p>
+      <h1 class="h2">Straight <span class="em">answers.</span></h1>
+    </header>
+    <h2 class="h3">The product</h2>
+    <FaqList items={FAQ.filter((f) => f.group === "product")} open={99} />
+    <h2 class="h3">Buying</h2>
+    <FaqList items={FAQ.filter((f) => f.group === "buying")} open={99} />
+  </div>
+</Layout>
+
+<style>
+  .page {
+    max-width: 1000px;
+    padding-block: clamp(36px, 6vw, 80px) clamp(70px, 9vw, 120px);
+  }
+  header {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+  h2 {
+    margin: 36px 0 14px;
+  }
+</style>

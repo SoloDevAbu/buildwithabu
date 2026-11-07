@@ -1,0 +1,38 @@
+---
+import { getCollection, render } from "astro:content"
+import Page from "@/layouts/page.astro"
+import { article, breadcrumbs } from "@/lib/schema"
+import { SITE } from "@/lib/site"
+
+export const getStaticPaths = async () => (await getCollection("guides")).map((guide) => ({ params: { id: guide.id }, props: { guide } }))
+
+const { guide } = Astro.props
+const { Content } = await render(guide)
+const path = `/guides/${guide.id}`
+const date = guide.data.date.toISOString().slice(0, 10)
+const updated = guide.data.updated?.toISOString().slice(0, 10)
+---
+
+<Page
+  title={`${guide.data.title} | Build with Abu`}
+  description={guide.data.description}
+  {path}
+  kicker="guide"
+  heading={guide.data.title}
+  summary={guide.data.answer}
+  updated={updated ?? date}
+  type="article"
+  jsonLd={[
+    breadcrumbs([
+      { name: "Guides", path: "/guides" },
+      { name: guide.data.title, path },
+    ]),
+    article({ title: guide.data.title, description: guide.data.description, path, date, updated }),
+  ]}
+>
+  <Content />
+  <hr />
+  <p>
+    Written by <a href="/about">{SITE.seller}</a>. <a href="/pricing">Reel Studio Kit</a> runs this kind of workflow from one line, for {SITE.priceLabel} once.
+  </p>
+</Page>

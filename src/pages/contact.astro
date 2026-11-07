@@ -1,0 +1,27 @@
+---
+import Page from "@/layouts/page.astro"
+import { breadcrumbs } from "@/lib/schema"
+import { REFUND_WINDOW_DAYS, SITE } from "@/lib/site"
+---
+
+<Page
+  title="Contact Build with Abu | Support for Reel Studio Kit"
+  description="Get support for Reel Studio Kit: lost downloads, duplicate payments and setup questions. Email hello@buildwithabu.xyz."
+  path="/contact"
+  kicker="contact"
+  heading="Email is the fastest way"
+  summary={`Write to ${SITE.email}. A real person reads every message.`}
+  jsonLd={[breadcrumbs([{ name: "Contact", path: "/contact" }])]}
+>
+  <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+  <h2>Lost your download?</h2>
+  <p>Your delivery email from Dodo Payments has your link. Can't find it? Email us from the address you bought with.</p>
+  <h2>Charged twice?</h2>
+  <p>
+    Email us within {REFUND_WINDOW_DAYS} days with both payment IDs from your receipts, and the duplicate gets refunded. See the <a href="/legal/refunds">refund policy</a>.
+  </p>
+  <h2>Stuck on setup?</h2>
+  <p>
+    Run <code>pnpm run doctor</code> first. It names the problem and the fix. If you're still stuck, send us its output.
+  </p>
+</Page>

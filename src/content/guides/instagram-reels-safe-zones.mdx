@@ -1,0 +1,33 @@
+---
+title: "Instagram Reels Safe Zones: Where to Put Text in 1080 × 1920"
+description: "Practical safe-zone margins for a 1080 × 1920 reel, why they shift between devices, and how to check your frames before posting."
+answer: "For a 1080 × 1920 reel, a practical safe box keeps text and faces about 220 px from the top, 380 px from the bottom, 120 px from the right and 60 px from the left. Instagram's overlay changes with app version, phone size and caption length, so these are working margins and not official numbers."
+date: 2026-11-07
+---
+
+## The working margins
+
+These are the values built into Reel Studio Kit. They're approximate, so keep a little extra room.
+
+| Edge | Keep clear | What sits there |
+| --- | --- | --- |
+| Top | 220 px | Reels title, camera icon |
+| Bottom | 380 px | Username, caption, audio name |
+| Right | 120 px | Like, comment, share and save buttons |
+| Left | 60 px | Margin from the screen edge |
+
+That leaves a safe box of 900 × 1320 px, starting 60 px from the left and 220 px from the top.
+
+## The bottom is the biggest trap
+
+A long caption pushes the overlay higher, so the bottom zone is the one to respect most. Put your main card in the upper-middle of the frame and captions near the top of the safe box.
+
+## How to check a frame
+
+Open a still at full size and draw the zones on top in a loud colour, then look for anything important under the red. Do it at several points in the video, because a card that fits at rest can slide under the buttons mid-animation.
+
+In Reel Studio Kit, review rounds draw these zones on the frames automatically, and you can change the values in `src/layout.ts`.
+
+## Do they apply to Shorts and TikTok?
+
+Those apps have similar overlays in similar places, though the exact sizes differ. A layout that's safe on Reels is a sensible start, but check a real upload on each app.

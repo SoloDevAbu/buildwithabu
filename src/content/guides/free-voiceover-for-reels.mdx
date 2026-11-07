@@ -1,0 +1,27 @@
+---
+title: "Free Voiceover for Reels: Edge Voices, Kokoro or Your Own"
+description: "Three free ways to voice a reel, what each is good for, and how to make generated speech sound less like reading."
+answer: "You can voice a reel for free with Microsoft Edge neural voices through edge-tts, with the open Kokoro-82M model running offline, or with your own recording. Edge is the easiest, Kokoro works without internet, and your own voice is the most personal. Check each option's terms before commercial use."
+date: 2026-11-07
+---
+
+## Your three options
+
+| Option | Needs internet | Best for |
+| --- | --- | --- |
+| [edge-tts](https://github.com/rany2/edge-tts) | Yes | Good default quality, including Indian English and Hindi |
+| [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) | Only for the first download | Offline use |
+| Your own recording | No | Personal brands |
+
+## Make it sound like talking
+
+Generated voices sound robotic most often because of pauses, not tone:
+
+- **Speak each paragraph in one go.** Stitching separate sentences creates uneven gaps.
+- **Cap the pauses.** Reel Studio Kit caps pauses at 0.18 seconds and adds longer ones only where the script asks for a beat.
+- **Keep the pace up.** Its target is about four words a second.
+- **Master the level.** It masters speech to -16 LUFS so the voice stays consistent between reels.
+
+## Before you publish commercially
+
+Terms differ by service and can change, so read the current terms for the voice you use. edge-tts is an unofficial client for a Microsoft service, not a licensed product. Kokoro-82M is released under Apache 2.0. If you're making work for a client, your own recording or a clearly licensed voice is the safest choice.

@@ -1,0 +1,25 @@
+---
+title: "How to Fact-Check AI-Generated Reels Before You Post"
+description: "A simple system for stopping invented claims in AI scripts: opened sources, numbers checked against research, and human approval."
+answer: "To fact-check an AI-written reel, require a source the agent actually opened for every claim, check that each on-screen number appears in that research, cut or label anything unsupported as opinion, and read the key sources yourself before approving the script."
+date: 2026-11-07
+---
+
+## The failure to design against
+
+Language models write smoothly whether or not a claim is true. Asking the agent to "be accurate" doesn't change that. A process does.
+
+## Four rules
+
+1. **Only opened sources count.** Search snippets don't. Keep a list of the pages actually read.
+2. **Every number traces back.** If a number is on screen, it must appear in the research notes.
+3. **No source, no claim.** Cut it, or say plainly that it's your opinion.
+4. **A person approves.** The agent can verify that a source exists, but you decide whether it's any good.
+
+## Make the check mechanical
+
+Rules in a prompt get skipped. A script doesn't skip them. In Reel Studio Kit, `pnpm run facts` rejects any claim without an opened source, and any on-screen number that isn't in the research. The voice stage won't run until you have approved a script.
+
+## Your part
+
+No tool makes this automatic. Facts in your reels are your responsibility, so open the key sources before you say yes, especially for health, money or legal topics. Primary sources beat articles about them.

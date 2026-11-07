@@ -1,0 +1,36 @@
+---
+title: "Word-by-Word Reel Captions with Whisper, Without Spelling Errors"
+description: "How to get word-level caption timing from Whisper while keeping your exact spelling, by aligning your script to the transcription."
+answer: "To get accurate word-by-word captions, run Whisper with word timestamps on your voice track, then align your own script to those words. Whisper supplies the timing and your script supplies the spelling, so names and brand terms stay correct."
+date: 2026-11-07
+---
+
+## Why raw transcription isn't enough
+
+Speech-to-text writes what it heard. Product names, Hinglish and numbers often come back wrong, and fixing them by hand means editing timing data too.
+
+## Keep timing and text apart
+
+Treat the two as separate jobs:
+
+1. **Timing.** Run [faster-whisper](https://github.com/SYSTRAN/faster-whisper) over the voice track with word timestamps. It runs locally with no API key.
+2. **Text.** Use the exact script as the source of truth.
+3. **Align.** Match your script's words to Whisper's words, then copy each start and end time across.
+
+The output is a simple list:
+
+```json
+{ "word": "Watch", "start": 0.0, "end": 0.14 }
+```
+
+## Check the match rate
+
+The share of script words matched to spoken words tells you whether alignment worked. In Reel Studio Kit, anything under 70% usually means the caption text differs from the speech, or that the wrong language was set.
+
+## Hindi and Hinglish
+
+Set the language when you transcribe. Getting it wrong is a common cause of poor matches. For Hinglish, try it both ways on a short clip first, because the best setting depends on how much of the speech is English.
+
+## Make the timing work harder
+
+Once each word has a time, captions are only the start. You can trigger a card change, stamp or cut on a spoken word, which is what makes a reel feel edited.

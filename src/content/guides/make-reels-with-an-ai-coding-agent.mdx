@@ -1,0 +1,30 @@
+---
+title: "How to Make Instagram Reels with an AI Coding Agent"
+description: "A practical workflow for making vertical reels with Claude Code, Codex or Cursor: research, scripts, voice, captions, code-built scenes and render."
+answer: "An AI coding agent can make a reel by treating video as code: it researches the topic, writes a script, generates a voice, times captions, builds each scene in a framework such as Remotion, and renders an MP4. The result depends on giving it a staged workflow with checks, not one big prompt."
+date: 2026-11-07
+---
+
+## Why code, and not an editor
+
+A coding agent can't drag clips on a timeline, but it can write files. Remotion lets you describe video as React components, so every scene becomes a file the agent can read, change and render again. That gives you something a timeline doesn't: a note like "move the card up" becomes a precise edit, not a redo.
+
+## The stages that matter
+
+One big prompt falls apart because nothing checks the work between steps. Split it up instead:
+
+1. **Research.** Make the agent open real sources and save them. Anything it can't source gets cut.
+2. **Script.** Ask for two different angles, so you are choosing and not just accepting.
+3. **Approval.** Stop here. Voice and scenes are expensive to redo, and a script is cheap to change.
+4. **Voice and captions.** Generate speech, then time each word to the audio.
+5. **Scenes.** Plan them on the real voice timings. Timing a scene to a guess is why cuts feel off.
+6. **Review.** Render stills and check them against the platform's no-go zones.
+7. **Render.** Output 1080 × 1920 and write the post caption.
+
+## What to give the agent
+
+Agents do best with written rules. Keep a project file that says what good looks like, which components exist, and what never to do. Then write one instruction file per stage, so the agent loads only what it needs for that step.
+
+## Doing it faster
+
+You can build all this yourself, and the stages above are a fair starting point. [Reel Studio Kit](/how-it-works) is this workflow already packaged: the skills, tools, motion system and checks, in a folder your agent can run from one line.

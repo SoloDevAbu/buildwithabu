@@ -1,0 +1,25 @@
+---
+import { COMPARISONS } from "@/data/compare"
+import Page from "@/layouts/page.astro"
+import { breadcrumbs } from "@/lib/schema"
+---
+
+<Page
+  title="Compare Reel Studio Kit with Other Ways to Make Reels"
+  description="Honest comparisons of Reel Studio Kit with manual editing, hosted AI video tools and building on Remotion yourself."
+  path="/compare"
+  kicker="compare"
+  heading="Is the kit the right tool for you?"
+  summary="It isn't for everyone. These comparisons say plainly when something else is the better choice."
+  jsonLd={[breadcrumbs([{ name: "Compare", path: "/compare" }])]}
+>
+  <ul>
+    {
+      COMPARISONS.map((c) => (
+        <li>
+          <a href={`/compare/${c.slug}`}>{c.heading}</a>
+        </li>
+      ))
+    }
+  </ul>
+</Page>

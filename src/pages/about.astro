@@ -1,0 +1,27 @@
+---
+import Page from "@/layouts/page.astro"
+import { breadcrumbs, person } from "@/lib/schema"
+import { SITE } from "@/lib/site"
+---
+
+<Page
+  title="About Abu Bakkar Siddique | Build with Abu"
+  description="Reel Studio Kit is made by Abu Bakkar Siddique, an independent builder in India who makes reels with AI coding agents."
+  path="/about"
+  kicker="about"
+  heading="Made by one person who actually uses it"
+  summary={`${SITE.brand} is run by ${SITE.seller}, an independent builder in ${SITE.sellerCountry}. Reel Studio Kit is the system behind the reels on ${SITE.instagramHandle}, with every rule written down.`}
+  jsonLd={[breadcrumbs([{ name: "About", path: "/about" }]), { "@type": "ProfilePage", mainEntity: { "@id": person["@id"] } }]}
+>
+  <img src="/img/abu-wave.webp" alt="Abu's cartoon sprite, waving" width="230" height="192" />
+  <p>
+    The kit started as a folder for producing reels from an AI coding agent. It grew into a full pipeline because each failure became a rule: claims need opened sources, the agent must stop for approval, cards must stay out of Instagram's no-go zones, and frames get checked before anyone sees them.
+  </p>
+  <p>The character in the corner of the reels is the default avatar. It ships with the kit, and you can swap it for your own.</p>
+  <h2>Find me</h2>
+  <ul>
+    <li>Instagram: <a href={SITE.instagram} rel="me noopener">{SITE.instagramHandle}</a></li>
+    <li>X: <a href={SITE.x} rel="me noopener">{SITE.xHandle}</a></li>
+    <li>Email: <a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+  </ul>
+</Page>

@@ -1,0 +1,29 @@
+---
+title: "What Is Remotion, and Why Use It for Short-Form Video?"
+description: "Remotion turns React components into video. What that means for reels, where it beats an editor, where it doesn't, and what its licence requires."
+answer: "Remotion is a framework for making videos with React code. Each frame is a rendered component, so layouts, timing and animation are written as code and exported to MP4. It suits repeatable, template-driven and AI-generated video, and it is less suited to cutting real footage by hand."
+date: 2026-11-07
+---
+
+## How it works
+
+In [Remotion](https://www.remotion.dev), a video is a React component that receives the current frame number. Animation is just math on that number, and rendering opens each frame in a headless browser, captures it and encodes the result.
+
+## Where it's strong
+
+- **Repeatable style.** Change one brand file and every video follows.
+- **Exact sync.** Tie an animation to the frame a word is spoken.
+- **AI agents.** Scenes are text files, so an agent can write and fix them.
+- **Data and UI.** Charts, mock apps and terminals stay crisp at any size.
+
+## Where an editor is better
+
+If your reel is mostly filmed footage cut by feel, a normal editor is faster. Remotion can use video clips, but it shines when the frame is built, not filmed.
+
+## Licensing
+
+Remotion isn't under a standard open-source licence. It's free for individuals and small teams, and companies with four or more people need a company licence. Check the [current licence](https://www.remotion.dev/license) before commercial use.
+
+## What it doesn't give you
+
+Remotion is the engine, not the look. Motion rules, components, voice, captions and review all sit on top. That layer is what [Reel Studio Kit](/how-it-works) provides.

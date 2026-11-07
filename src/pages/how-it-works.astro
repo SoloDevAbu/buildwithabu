@@ -1,0 +1,64 @@
+---
+import { STAGES } from "@/data/chapters"
+import Page from "@/layouts/page.astro"
+import { breadcrumbs } from "@/lib/schema"
+import { SITE } from "@/lib/site"
+
+const howTo = {
+  "@type": "HowTo",
+  name: "How to make a vertical reel with Reel Studio Kit",
+  description: SITE.description,
+  step: STAGES.map((stage, i) => ({ "@type": "HowToStep", position: i + 1, name: stage.name, text: stage.says })),
+}
+---
+
+<Page
+  title="How Reel Studio Kit Works: From One Line to a Finished Reel"
+  description="How Reel Studio Kit turns one line into a finished vertical reel: verified research, two scripts, your approval, voice, synced captions, scenes, self-review and render."
+  path="/how-it-works"
+  kicker="how it works"
+  heading="From one line to a finished reel"
+  summary="You open the kit in an AI coding agent and type one line. The agent runs seven stages, stops once for your approval, and leaves a finished 1080 × 1920 video plus a caption, hashtags and source links in one folder."
+  jsonLd={[breadcrumbs([{ name: "How it works", path: "/how-it-works" }]), howTo]}
+>
+  <h2>Set it up once</h2>
+  <p>
+    Unzip the folder, open your agent in it, and paste the setup prompt from the README. The agent runs <code>node tools/doctor.mjs --fix</code>, which checks Node.js, pnpm, dependencies, ffmpeg, Python, the Whisper and voice environment, and the render browser. It installs what it can, prints the exact command for anything it can't, and finishes with a real rendered test frame.
+  </p>
+  <h2>Type one line</h2>
+  <pre><code>make a reel: 3 sleep mistakes that ruin your mornings
+reel banao: 3 sleep mistakes that ruin your mornings</code></pre>
+  <p>Want a style? Put it in the line: <code>make a reel: topic, pixel avatar, dark preset</code>.</p>
+
+  <h2>The seven stages</h2>
+  {
+    STAGES.map((stage) => (
+      <Fragment>
+        <h3>
+          {stage.n}. {stage.name}
+        </h3>
+        <p>{stage.says}</p>
+        <p>
+          Command: <code>{stage.cmd}</code>. Output: <code>{stage.file}</code>.
+        </p>
+      </Fragment>
+    ))
+  }
+
+  <h2>What stays on your machine</h2>
+  <p>
+    Everything about a reel lives in <code>projects/&lt;id&gt;/</code>: the brief, sources, both scripts, your approval in your own words, a decision log, the review rounds and the final video. Stop any time, and later the agent picks it up with <code>pnpm run status -- &lt;id&gt;</code>.
+  </p>
+
+  <h2>Voice, music and captions</h2>
+  <ul>
+    <li><strong>Edge neural voices</strong> are free and need internet. Options include warm, casual, Indian English and Hindi voices. Speech is mastered to -16 LUFS with pauses capped at 0.18 seconds.</li>
+    <li><strong>Kokoro</strong> runs offline with <code>--provider kokoro</code>.</li>
+    <li><strong>Your own recording</strong> works in any format with <code>--provider own</code>.</li>
+    <li><strong>Music</strong> comes from your own <code>music/</code> folder. The bed loops, ducks under the voice and fades out.</li>
+    <li><strong>Captions</strong> are timed locally by Whisper and aligned to your exact text.</li>
+  </ul>
+  <p>Check the terms of your voice service and music tracks before commercial use.</p>
+
+  <p><a href="/pricing">Get the kit for {SITE.priceLabel} once</a></p>
+</Page>

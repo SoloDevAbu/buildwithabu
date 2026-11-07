@@ -1,0 +1,23 @@
+---
+import Page from "@/layouts/page.astro"
+import { breadcrumbs } from "@/lib/schema"
+---
+
+<Page
+  title="Reel Studio Kit Changelog"
+  description="What changed in each release of Reel Studio Kit."
+  path="/changelog"
+  kicker="changelog"
+  heading="What changed, release by release"
+  jsonLd={[breadcrumbs([{ name: "Changelog", path: "/changelog" }])]}
+>
+  <h2>1.0</h2>
+  <p>The first paid release.</p>
+  <ul>
+    <li>Seven-stage reel workflow with a facts check and an approval gate</li>
+    <li>Edge, Kokoro and own-recording voice options</li>
+    <li>Local word-level caption sync with Whisper</li>
+    <li>Motion system, editorial components, presets and avatars</li>
+    <li>Self-review with Instagram safe zones, plus a one-command setup doctor</li>
+  </ul>
+</Page>

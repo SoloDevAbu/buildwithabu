@@ -1,0 +1,50 @@
+---
+import { COMPARISONS, type Comparison } from "@/data/compare"
+import Page from "@/layouts/page.astro"
+import { breadcrumbs } from "@/lib/schema"
+import { SITE } from "@/lib/site"
+
+export const getStaticPaths = () => COMPARISONS.map((c) => ({ params: { slug: c.slug }, props: { c } }))
+
+const { c } = Astro.props as { c: Comparison }
+const path = `/compare/${c.slug}`
+---
+
+<Page
+  title={`${c.title} | Build with Abu`}
+  description={c.description}
+  {path}
+  kicker="compare"
+  heading={c.heading}
+  summary={c.answer}
+  jsonLd={[
+    breadcrumbs([
+      { name: "Compare", path: "/compare" },
+      { name: c.heading, path },
+    ]),
+  ]}
+>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th></th><th>Reel Studio Kit</th><th>{c.other}</th></tr>
+      </thead>
+      <tbody>
+        {
+          c.rows.map(([label, kit, other]) => (
+            <tr>
+              <th scope="row">{label}</th>
+              <td>{kit}</td>
+              <td>{other}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+  <h2>Choose the kit if</h2>
+  <ul>{c.pick.kit.map((item) => <li>{item}</li>)}</ul>
+  <h2>Choose the other route if</h2>
+  <ul>{c.pick.other.map((item) => <li>{item}</li>)}</ul>
+  <p><a href="/pricing">See pricing and requirements</a> ({SITE.priceLabel} once).</p>
+</Page>

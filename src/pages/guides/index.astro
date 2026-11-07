@@ -1,0 +1,65 @@
+---
+import { getCollection } from "astro:content"
+import Layout from "@/layouts/main.astro"
+import { breadcrumbs } from "@/lib/schema"
+
+const guides = (await getCollection("guides")).sort((a, b) => a.data.title.localeCompare(b.data.title))
+---
+
+<Layout
+  title="Guides: Making Reels with AI Coding Agents | Build with Abu"
+  description="Practical guides on making vertical video with AI coding agents: safe zones, word-synced captions, free voiceover, Remotion and fact-checking."
+  path="/guides"
+  jsonLd={[breadcrumbs([{ name: "Guides", path: "/guides" }])]}
+>
+  <div class="wrap page">
+    <header>
+      <p class="kicker">// guides</p>
+      <h1 class="h2">How reels get <span class="em">made.</span></h1>
+    </header>
+    <ul>
+      {
+        guides.map((guide, i) => (
+          <li>
+            <a class="sheet card" href={`/guides/${guide.id}`} data-dither data-pop style={`--i:${i % 2}`}>
+              <h2 class="h3">{guide.data.title}</h2>
+              <p>{guide.data.description}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Layout>
+
+<style>
+  .page {
+    padding-block: clamp(36px, 6vw, 80px) clamp(70px, 9vw, 120px);
+  }
+  header {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 44px;
+  }
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr));
+    gap: 28px;
+  }
+  .card {
+    display: grid;
+    gap: 10px;
+    height: 100%;
+    padding: 22px;
+    text-decoration: none;
+    transition: translate 0.14s var(--spring);
+  }
+  .card:hover {
+    translate: 0 -3px;
+  }
+  .card p {
+    color: var(--muted);
+    font-size: 0.96rem;
+    line-height: 1.42;
+  }
+</style>
