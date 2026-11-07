@@ -1,0 +1,95 @@
+---
+import { CHAPTERS } from "@/data/chapters"
+import { SITE } from "@/lib/site"
+---
+
+<aside class="hud" data-hud aria-label="Page progress">
+  <div class="tray">
+    <span class="tab mono" data-hud-label>hook</span>
+    <ol>
+      {
+        CHAPTERS.map((chapter) => (
+          <li>
+            <a href={`#${chapter.id}`} data-slot aria-label={`Jump to ${chapter.label}`} title={chapter.label} />
+          </li>
+        ))
+      }
+    </ol>
+    <span class="time mono"><span data-hud-time>00:00</span> / 00:45</span>
+    <a class="btn btn--sm" href="#pricing">Get it · {SITE.priceLabel}</a>
+  </div>
+</aside>
+
+<style>
+  .hud {
+    position: fixed;
+    left: 50%;
+    bottom: 14px;
+    z-index: 45;
+    translate: -50% 90px;
+    width: min(calc(100vw - 24px), 620px);
+    transition: translate 0.32s var(--spring);
+  }
+  .hud[data-show] {
+    translate: -50% 0;
+  }
+  .tray {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 8px 8px 14px;
+    background: var(--white);
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    border-radius: 14px;
+  }
+  .tab {
+    position: absolute;
+    left: 14px;
+    top: -25px;
+    padding: 2px 10px 4px;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 7px 7px 0 0;
+    font-size: 0.72rem;
+  }
+  ol {
+    display: flex;
+    flex: 1;
+    gap: 4px;
+  }
+  li {
+    flex: 1;
+  }
+  a[data-slot] {
+    display: block;
+    height: 22px;
+    border: 2px solid var(--ink);
+    border-radius: 5px;
+    transition: background-color 0.05s;
+  }
+  a[data-slot][data-on] {
+    background: var(--coral);
+  }
+  .hud[data-done] a[data-slot][data-on] {
+    background: var(--green);
+  }
+  .time {
+    flex: none;
+    font-size: 0.74rem;
+  }
+  .btn {
+    flex: none;
+  }
+  @media (max-width: 560px) {
+    .time {
+      display: none;
+    }
+    a[data-slot] {
+      height: 18px;
+      border-width: 1.5px;
+      border-radius: 4px;
+    }
+  }
+</style>

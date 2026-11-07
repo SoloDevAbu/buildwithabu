@@ -1,17 +1,321 @@
 ---
+import FaqList from "@/components/home/FaqList.astro"
+import Hud from "@/components/home/Hud.astro"
+import Pipeline from "@/components/home/Pipeline.astro"
+import PriceBlock from "@/components/home/PriceBlock.astro"
+import ReelSlots from "@/components/home/ReelSlots.astro"
+import ReelWall from "@/components/home/ReelWall.astro"
+import { CHAPTERS } from "@/data/chapters"
+import { FAQ } from "@/data/faq"
+import BoxExplorer from "@/islands/BoxExplorer"
+import CaptionSync from "@/islands/CaptionSync"
+import GatePicker from "@/islands/GatePicker"
+import HeroStudio from "@/islands/HeroStudio"
+import ReskinLab from "@/islands/ReskinLab"
+import ReviewBench from "@/islands/ReviewBench"
 import Layout from "@/layouts/main.astro"
-import { Button } from "@/components/ui/button"
+import { faqPage, product } from "@/lib/schema"
+import { SITE } from "@/lib/site"
+
+const attrs = (id: (typeof CHAPTERS)[number]["id"]) => {
+  const c = CHAPTERS.find((chapter) => chapter.id === id)!
+  return { id, "data-chapter": true, "data-mood": c.mood, "data-label": c.label }
+}
+const faqTop = FAQ.filter((f) =>
+  ["What is Reel Studio Kit?", "What do I need to run it?", "Does it need API keys?", "Can I get a refund?", "Who will appear on my card statement?", "Can I use it for client work and sell the videos?"].includes(f.q),
+)
+const facts = ["1080 × 1920", "30 fps", "under 60 s", "no API keys", "runs on your machine", "English + Hinglish"]
 ---
 
-<Layout>
-  <div class="flex min-h-svh p-6">
-    <div class="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-      <div>
-        <h1 class="font-medium">Project ready!</h1>
-        <p>You may now add components and start building.</p>
-        <p>We've already added the button component for you.</p>
-        <Button client:load className="mt-2">Button</Button>
+<Layout
+  title="Reel Studio Kit: One Line In, Finished Reel Out | $16 Once"
+  description="An AI coding agent kit that turns one line into a finished vertical reel: research, two scripts, voice, synced captions, scenes, self-review and render. $16 once."
+  path="/"
+  jsonLd={[product, faqPage(faqTop)]}
+>
+  <section class="hero" {...attrs("hook")}>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="sticker" data-dither="sm"><small>// for ai coding agents</small><b>Reel Studio Kit</b></span>
+        <h1 class="display">
+          One line in.{" "}
+          <span class="marked">
+            <span class="em">Finished reel</span>
+            <svg viewBox="0 0 320 16" preserveAspectRatio="none" aria-hidden="true"><path d="M3 11c62-7 142-9 314-5"></path></svg>
+          </span>{" "}
+          out.
+        </h1>
+        <p class="lede">
+          A folder you open in your AI coding agent. It researches the topic, writes two scripts, voices the one you pick, syncs every caption, builds the scenes, checks its own frames and renders the video.
+        </p>
+        <div class="cta">
+          <a class="btn" href="#pricing">Get the kit · {SITE.priceLabel} once</a>
+          <a class="btn btn--ghost" href="#pipeline">See the pipeline</a>
+        </div>
+        <ul class="facts mono">
+          {facts.map((f) => <li>{f}</li>)}
+        </ul>
       </div>
+      <HeroStudio client:idle />
     </div>
-  </div>
+  </section>
+
+  <section class="chapter wall-section" {...attrs("proof")}>
+    <div class="wrap">
+      <div class="wall-head">
+        <div class="chapter-head">
+          <p class="kicker">// 01 — proof</p>
+          <h2 class="h2">Reels that look <span class="em">directed,</span> not generated.</h2>
+        </div>
+        <label class="zones-toggle">
+          <input type="checkbox" data-zones-toggle />
+          <span class="mono">show instagram no-go zones</span>
+        </label>
+      </div>
+      <div class="wall" data-wall>
+        <ReelWall server:defer>
+          <ReelSlots slot="fallback" />
+        </ReelWall>
+      </div>
+      <p class="wall-more"><a class="link" href="/reels">See every reel</a></p>
+    </div>
+  </section>
+
+  <section class="chapter" {...attrs("pipeline")}>
+    <div class="wrap">
+      <div class="chapter-head">
+        <p class="kicker">// 02 — the pipeline</p>
+        <h2 class="h2">Seven stages. <span class="em">One stop.</span></h2>
+        <p class="lede">Each stage writes a real file, so you can stop any time and pick it up later. Nothing is a black box.</p>
+      </div>
+      <Pipeline />
+    </div>
+  </section>
+
+  <section class="chapter" {...attrs("gate")}>
+    <div class="wrap">
+      <div class="chapter-head">
+        <p class="kicker">// 03 — the gate</p>
+        <h2 class="h2">Your taste stays <span class="em">in charge.</span></h2>
+        <p class="lede">The agent never voices or builds anything before you approve. Try it: pick a script.</p>
+      </div>
+      <GatePicker client:visible />
+    </div>
+  </section>
+
+  <section class="chapter" {...attrs("captions")}>
+    <div class="wrap">
+      <div class="chapter-head">
+        <p class="kicker">// 04 — captions</p>
+        <h2 class="h2">Every word lands <span class="em">on the voice.</span></h2>
+        <p class="lede">Whisper hears the voice locally and times each word. Your exact caption text is aligned to those times, so the spelling is always yours.</p>
+      </div>
+      <CaptionSync client:visible />
+    </div>
+  </section>
+
+  <section class="chapter" {...attrs("reskin")}>
+    <div class="wrap">
+      <div class="chapter-head">
+        <p class="kicker">// 05 — your brand</p>
+        <h2 class="h2">One file. <span class="em">Whole new look.</span></h2>
+        <p class="lede">Colours, font, corner radius, shadow and handle all live in <code class="mono">src/brand.ts</code>. Play with the same values here.</p>
+      </div>
+      <ReskinLab client:visible />
+    </div>
+  </section>
+
+  <section class="chapter" {...attrs("review")}>
+    <div class="wrap">
+      <div class="chapter-head">
+        <p class="kicker">// 06 — self-review</p>
+        <h2 class="h2">It checks its own work <span class="em">before you see it.</span></h2>
+        <p class="lede">Frames get reviewed with Instagram's no-go zones drawn on in red. Flip between the draft and the fix.</p>
+      </div>
+      <ReviewBench client:visible />
+    </div>
+  </section>
+
+  <section class="chapter" {...attrs("box")}>
+    <div class="wrap">
+      <div class="chapter-head">
+        <p class="kicker">// 07 — what's in the box</p>
+        <h2 class="h2">A folder you <span class="em">own.</span></h2>
+        <p class="lede">No dashboard, no login, no render credits. Open any part and change it.</p>
+      </div>
+      <BoxExplorer client:visible />
+    </div>
+  </section>
+
+  <section class="chapter" {...attrs("pricing")}>
+    <div class="wrap">
+      <div class="chapter-head">
+        <p class="kicker">// 08 — pricing</p>
+        <h2 class="h2">{SITE.priceLabel}. <span class="em">Once.</span> That's the whole model.</h2>
+      </div>
+      <PriceBlock />
+    </div>
+  </section>
+
+  <section class="chapter" {...attrs("faq")}>
+    <div class="wrap faq-grid">
+      <div class="chapter-head">
+        <p class="kicker">// 09 — questions</p>
+        <h2 class="h2">Straight <span class="em">answers.</span></h2>
+        <p><a class="link" href="/faq">Read all of them</a></p>
+      </div>
+      <FaqList items={faqTop} open={1} />
+    </div>
+  </section>
+
+  <Hud slot="after" />
 </Layout>
+
+<script>
+  // Hover or tap a reel to play its teaser. Delegated because the wall streams in late.
+  const wall = document.querySelector("[data-wall]")
+  const canHover = matchMedia("(hover: hover)").matches
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches
+  if (wall && canHover && !calm) {
+    wall.addEventListener("pointerover", (event) => {
+      const card = (event.target as HTMLElement).closest<HTMLElement>("[data-teaser]")
+      if (!card || card.querySelector("video")) return
+      const video = document.createElement("video")
+      video.src = card.dataset.teaser ?? ""
+      video.muted = true
+      video.loop = true
+      video.playsInline = true
+      card.querySelector("img")?.after(video)
+      video.play().catch(() => video.remove())
+      card.addEventListener("pointerleave", () => video.remove(), { once: true })
+    })
+  }
+  document.querySelector<HTMLInputElement>("[data-zones-toggle]")?.addEventListener("change", (event) => {
+    document.documentElement.toggleAttribute("data-zones", (event.target as HTMLInputElement).checked)
+  })
+</script>
+
+<style>
+  .hero {
+    padding-block: clamp(20px, 3vw, 44px) clamp(60px, 8vw, 110px);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr);
+    gap: clamp(32px, 4vw, 64px);
+    align-items: center;
+  }
+  .hero-copy {
+    display: grid;
+    gap: 24px;
+    justify-items: start;
+  }
+  .marked {
+    position: relative;
+    display: inline-block;
+    white-space: nowrap;
+  }
+  .marked svg {
+    position: absolute;
+    left: -1%;
+    bottom: -0.1em;
+    width: 102%;
+    height: 0.16em;
+    overflow: visible;
+  }
+  .marked path {
+    fill: none;
+    stroke: var(--coral);
+    stroke-width: 5;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 400;
+    animation: draw 0.42s 0.25s ease-out both;
+  }
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 400;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-width: 560px;
+  }
+  .facts li {
+    padding: 3px 9px;
+    border: 1.5px solid var(--line);
+    border-radius: 7px;
+  }
+  .wall-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: clamp(30px, 4vw, 54px);
+  }
+  .wall-head .chapter-head {
+    margin-bottom: 0;
+  }
+  .zones-toggle {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    min-height: 40px;
+    cursor: pointer;
+  }
+  .zones-toggle input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--coral);
+  }
+  .wall {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(12px, 1.6vw, 22px);
+  }
+  .wall-more {
+    margin-top: 26px;
+  }
+  .faq-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    gap: clamp(24px, 5vw, 70px);
+  }
+  code {
+    padding: 0.1em 0.35em;
+    border-radius: 5px;
+    background: rgb(18 19 22 / 0.08);
+    color: var(--fg);
+  }
+  @media (max-width: 1040px) {
+    .hero-grid,
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 860px) {
+    .wall {
+      grid-auto-flow: column;
+      grid-template-columns: none;
+      grid-auto-columns: min(62vw, 240px);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      margin-inline: calc(var(--gutter) * -1);
+      padding: 10px var(--gutter) 16px;
+    }
+    .wall > :global(*) {
+      scroll-snap-align: center;
+    }
+  }
+</style>

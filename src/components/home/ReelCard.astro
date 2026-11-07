@@ -1,0 +1,82 @@
+---
+import { formatDuration, type Reel } from "@/lib/reels"
+
+type Props = { reel: Reel; eager?: boolean }
+const { reel, eager = false } = Astro.props
+---
+
+<a class="reel" href={`/reels/${reel.slug}`} data-teaser={reel.teaser}>
+  <img src={reel.poster} alt={`${reel.title}, vertical reel made with Reel Studio Kit`} width="360" height="640" loading={eager ? "eager" : "lazy"} decoding="async" />
+  <span class="zones" aria-hidden="true"><i></i><i></i><i></i></span>
+  <span class="time mono">{formatDuration(reel.duration_seconds)}</span>
+  <span class="title">{reel.title}</span>
+</a>
+
+<style>
+  .reel {
+    position: relative;
+    display: block;
+    flex: none;
+    aspect-ratio: 9 / 16;
+    overflow: hidden;
+    border: 2px solid var(--ink);
+    border-radius: 16px;
+    background: var(--ink);
+    color: #fff;
+    text-decoration: none;
+  }
+  .reel :global(video),
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .time {
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    padding: 2px 7px;
+    border-radius: 6px;
+    background: var(--ink);
+    color: #fff;
+    font-size: 0.7rem;
+  }
+  .title {
+    position: absolute;
+    inset: auto 0 0;
+    padding: 34px 12px 11px;
+    background: linear-gradient(transparent, rgb(0 0 0 / 0.78));
+    font-weight: 600;
+    font-size: 0.92rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .zones {
+    display: none;
+  }
+  :global(html[data-zones]) .zones {
+    display: block;
+  }
+  .zones i {
+    position: absolute;
+    background: rgb(239 68 68 / 0.32);
+    outline: 1px dashed var(--red);
+    outline-offset: -1px;
+  }
+  .zones i:nth-child(1) {
+    inset: 0 0 auto;
+    height: 11.5%;
+  }
+  .zones i:nth-child(2) {
+    inset: auto 0 0;
+    height: 19.8%;
+  }
+  .zones i:nth-child(3) {
+    top: 11.5%;
+    bottom: 19.8%;
+    right: 0;
+    width: 11.1%;
+  }
+</style>

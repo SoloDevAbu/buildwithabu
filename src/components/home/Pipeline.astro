@@ -1,0 +1,248 @@
+---
+import { STAGES } from "@/data/chapters"
+---
+
+<div class="pipe">
+  <ol class="steps">
+    {
+      STAGES.map((stage) => (
+        <li data-step>
+          <p class="kicker">// {stage.n}</p>
+          <h3 class="h2 name">{stage.name}</h3>
+          <p class="says">{stage.says}</p>
+          <p class="mono cmd">
+            $ {stage.cmd} <span>→ {stage.file}</span>
+          </p>
+        </li>
+      ))
+    }
+  </ol>
+
+  <div class="rig" aria-hidden="true">
+    <div class="plates">
+      <div class="plate sheet" data-plate data-dither>
+        <div class="win-head"><i></i> research/sources.md</div>
+        <div class="in">
+          <p class="row ok"><b>opened</b> source one, primary doc</p>
+          <p class="row ok"><b>opened</b> source two, study</p>
+          <p class="row ok"><b>opened</b> source three, official page</p>
+          <p class="row bad"><b>rejected</b> number with no source</p>
+          <span class="stamp" style="--stamp:1.4rem">Facts checked</span>
+        </div>
+      </div>
+      <div class="plate sheet" data-plate data-dither>
+        <div class="win-head"><i></i> script/</div>
+        <div class="in two">
+          <div class="mini"><b>variant-a.md</b><u></u><u class="s"></u><u></u></div>
+          <div class="mini"><b>variant-b.md</b><u class="s"></u><u></u><u></u></div>
+        </div>
+      </div>
+      <div class="plate sheet sheet--yellow" data-plate data-dither>
+        <div class="win-head"><i></i> gate.md</div>
+        <div class="in center">
+          <p class="stop">Waiting for<br />your <span class="em">yes.</span></p>
+        </div>
+      </div>
+      <div class="plate sheet" data-plate data-dither>
+        <div class="win-head"><i></i> captions.words.json</div>
+        <div class="in">
+          <pre>{`{ "word": "Watch", "start": 0.00, "end": 0.14 }
+{ "word": "me",    "start": 0.14, "end": 0.32 }
+{ "word": "*rob*", "start": 0.32, "end": 0.50 }`}</pre>
+          <div class="wave">{Array.from({ length: 44 }, (_, i) => <i style={`height:${16 + (i * 41) % 76}%`}></i>)}</div>
+        </div>
+      </div>
+      <div class="plate sheet sheet--ink" data-plate data-dither>
+        <div class="win-head"><i></i> scenes/01-hook.tsx</div>
+        <div class="in">
+          <pre>{`export const scene: SceneDef = {
+  chapter: "hook",
+  at: "Watch",
+  card: <Surface tone="paper" stack={2}>…</Surface>,
+}`}</pre>
+        </div>
+      </div>
+      <div class="plate sheet" data-plate data-dither>
+        <div class="win-head"><i></i> review/round-1/</div>
+        <div class="in">
+          <p class="row ok"><b>pass</b> frames clear of no-go zones</p>
+          <p class="row ok"><b>pass</b> motion rhythm</p>
+          <p class="row bad"><b>fix</b> card clipped at 00:12</p>
+          <p class="row ok"><b>fixed</b> re-rendered, round 2 clear</p>
+        </div>
+      </div>
+      <div class="plate sheet sheet--ink" data-plate data-dither>
+        <div class="win-head"><i></i> final/</div>
+        <div class="in">
+          <p class="row ok"><b>my-reel.mp4</b> 1080 × 1920, 30 fps</p>
+          <p class="row ok"><b>post.md</b> caption, hashtags, sources</p>
+          <span class="stamp" style="--stamp:1.6rem;--stamp-color:#7ff0c8">Ready to post</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .pipe {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(32px, 6vw, 90px);
+  }
+  .steps {
+    display: grid;
+    gap: 0;
+  }
+  .steps li {
+    display: grid;
+    align-content: center;
+    gap: 12px;
+    min-height: 62vh;
+    padding-block: 22px;
+  }
+  html.js .steps li {
+    opacity: 0.3;
+  }
+  html.js .steps li[data-active] {
+    opacity: 1;
+  }
+  .name {
+    font-size: clamp(2rem, 4.2vw, 3.7rem);
+  }
+  .says {
+    max-width: 44ch;
+    font-size: 1.1rem;
+    line-height: 1.42;
+    color: var(--muted);
+  }
+  .cmd {
+    color: var(--fg);
+    overflow-wrap: anywhere;
+  }
+  .cmd span {
+    color: var(--accent);
+  }
+  .rig {
+    position: sticky;
+    top: 18vh;
+    align-self: start;
+    height: 62vh;
+  }
+  .plates {
+    position: relative;
+    height: min(100%, 420px);
+  }
+  .plate {
+    position: absolute;
+    inset: 0 0 auto;
+    visibility: hidden;
+  }
+  html:not(.js) .plate:first-child,
+  .plate[data-active] {
+    visibility: visible;
+    animation: plate 0.3s var(--spring) both;
+  }
+  @keyframes plate {
+    from {
+      scale: 0.9;
+      rotate: 2deg;
+    }
+  }
+  .in {
+    position: relative;
+    display: grid;
+    gap: 10px;
+    min-height: 268px;
+    padding: 22px;
+    align-content: start;
+  }
+  .row {
+    font-family: var(--mono);
+    font-size: 0.84rem;
+  }
+  .row b {
+    display: inline-block;
+    min-width: 76px;
+    margin-right: 8px;
+    padding: 1px 7px;
+    border-radius: 5px;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--green);
+  }
+  .row.bad b {
+    background: #ff9a9a;
+  }
+  .plate .stamp {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+  }
+  .two {
+    grid-template-columns: 1fr 1fr;
+  }
+  .mini {
+    display: grid;
+    gap: 9px;
+    align-content: start;
+    padding: 12px;
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    font-family: var(--mono);
+    font-size: 0.74rem;
+  }
+  .mini u {
+    height: 7px;
+    border-radius: 3px;
+    background: #d9dad2;
+    text-decoration: none;
+  }
+  .mini u.s {
+    width: 60%;
+  }
+  .center {
+    align-content: center;
+  }
+  .stop {
+    font-weight: 500;
+    font-size: 3rem;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  pre {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    line-height: 1.55;
+    white-space: pre-wrap;
+  }
+  .wave {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 84px;
+  }
+  .wave i {
+    flex: 1;
+    background: var(--ink);
+    border-radius: 2px;
+  }
+  .wave i:nth-child(4n) {
+    background: var(--coral);
+  }
+  @media (max-width: 900px) {
+    .pipe {
+      grid-template-columns: 1fr;
+    }
+    .rig {
+      display: none;
+    }
+    .steps li {
+      min-height: 0;
+      padding-block: 20px;
+      border-top: 2px solid var(--rule);
+    }
+    html.js .steps li {
+      opacity: 1;
+    }
+  }
+</style>

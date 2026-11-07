@@ -1,0 +1,65 @@
+---
+import type { Faq } from "@/data/faq"
+
+type Props = { items: Faq[]; open?: number }
+const { items, open = 0 } = Astro.props
+---
+
+<div class="faq">
+  {
+    items.map((item, i) => (
+      <details open={i < open}>
+        <summary>
+          <h3>{item.q}</h3>
+          <span aria-hidden="true" />
+        </summary>
+        <p>{item.a}</p>
+      </details>
+    ))
+  }
+</div>
+
+<style>
+  .faq {
+    border-top: 2px solid var(--line);
+  }
+  details {
+    border-bottom: 2px solid var(--line);
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 64px;
+    padding-block: 14px;
+    cursor: pointer;
+    list-style: none;
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  h3 {
+    font-weight: 500;
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+  summary span {
+    flex: none;
+    width: 18px;
+    height: 18px;
+    background:
+      linear-gradient(currentColor 0 0) center / 100% 2.5px no-repeat,
+      linear-gradient(currentColor 0 0) center / 2.5px 100% no-repeat;
+    transition: rotate 0.2s var(--spring);
+  }
+  details[open] summary span {
+    rotate: 45deg;
+  }
+  details p {
+    max-width: 66ch;
+    padding-bottom: 20px;
+    color: var(--muted);
+  }
+</style>

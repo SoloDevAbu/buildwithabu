@@ -1,0 +1,93 @@
+---
+// Designed empty frames. Shown until real reels are published, or while the wall loads.
+type Props = { count?: number; from?: number }
+const { count = 5, from = 0 } = Astro.props
+const kinds = ["explainer", "myth bust", "how-to", "breakdown", "top 3", "story", "news", "tool demo"]
+const slots = Array.from({ length: count }, (_, i) => ({
+  n: String(from + i + 1).padStart(2, "0"),
+  kind: kinds[(from + i) % kinds.length],
+}))
+---
+
+{
+  slots.map((slot, i) => (
+    <div class="slot" style={`--tilt:${[-1.4, 1, -0.6, 1.3, -1][i % 5]}deg`} aria-hidden="true">
+      <span class="crop tl" />
+      <span class="crop tr" />
+      <span class="crop bl" />
+      <span class="crop br" />
+      <p class="mono">// reel {slot.n}</p>
+      <p class="kind">{slot.kind}</p>
+      <span class="play" />
+      <p class="mono res">1080 × 1920</p>
+    </div>
+  ))
+}
+
+<style>
+  .slot {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex: none;
+    aspect-ratio: 9 / 16;
+    padding: 18px 16px;
+    border: 2px dashed var(--muted);
+    border-radius: 16px;
+    color: var(--muted);
+    rotate: var(--tilt);
+    background: rgb(255 255 255 / 0.22);
+  }
+  .kind {
+    margin-top: 6px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--fg);
+  }
+  .play {
+    width: 46px;
+    height: 46px;
+    margin: auto;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    position: relative;
+  }
+  .play::after {
+    content: "";
+    position: absolute;
+    inset: 12px 11px 12px 15px;
+    background: currentColor;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+  .res {
+    font-size: 0.7rem;
+  }
+  .crop {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 0 solid var(--coral);
+  }
+  .tl {
+    top: -7px;
+    left: -7px;
+    border-width: 2px 0 0 2px;
+  }
+  .tr {
+    top: -7px;
+    right: -7px;
+    border-width: 2px 2px 0 0;
+  }
+  .bl {
+    bottom: -7px;
+    left: -7px;
+    border-width: 0 0 2px 2px;
+  }
+  .br {
+    bottom: -7px;
+    right: -7px;
+    border-width: 0 2px 2px 0;
+  }
+</style>

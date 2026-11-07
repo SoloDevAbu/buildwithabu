@@ -1,0 +1,148 @@
+---
+import BuyPanel from "@/islands/BuyPanel"
+import { REFUND_WINDOW_DAYS, SITE } from "@/lib/site"
+import Requirements from "./Requirements.astro"
+
+const lines = [
+  ["Reel Studio Kit, v1", "$16.00"],
+  ["Monthly subscription", "$0.00"],
+  ["Per-video fee", "$0.00"],
+  ["Updates to v1", "$0.00"],
+]
+---
+
+<div class="price">
+  <div class="left">
+    <div class="ticket" data-pop>
+      <div class="paper">
+        <p class="mono head">REEL STUDIO KIT<br />buildwithabu.xyz</p>
+        <p class="big">{SITE.priceLabel}<span class="em">once</span></p>
+        <dl>
+          {
+            lines.map(([label, amount]) => (
+              <div>
+                <dt>{label}</dt>
+                <dd>{amount}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <p class="total mono"><span>TOTAL</span><span>{SITE.priceLabel}.00 USD</span></p>
+        <p class="note">Taxes may apply at checkout. No refunds, except a duplicate payment reported within {REFUND_WINDOW_DAYS} days.</p>
+        <span class="stamp" style="--stamp:1.7rem">One time</span>
+      </div>
+    </div>
+    <Requirements />
+  </div>
+  <div class="sheet buy" data-dither data-pop>
+    <div class="win-head"><i></i> checkout</div>
+    <div class="buy-body">
+      <BuyPanel client:visible />
+    </div>
+  </div>
+</div>
+
+<style>
+  .price {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: start;
+  }
+  .left {
+    display: grid;
+    grid-template-columns: minmax(0, 330px) minmax(0, 1fr);
+    gap: clamp(24px, 3vw, 40px);
+    align-items: start;
+  }
+  /* Saw-tooth receipt edges, cut with a mask so the paper stays one element. */
+  .paper {
+    position: relative;
+    display: grid;
+    gap: 14px;
+    padding: 28px 22px 34px;
+    background: #fff;
+    color: var(--ink);
+    --muted: #565962;
+    --accent: #cf4114;
+    --m: conic-gradient(from -45deg at bottom, #000 90deg, #0000 0) 0 0 / 14px 8px repeat-x;
+    -webkit-mask:
+      conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / 14px 8px repeat-x,
+      conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 14px 8px repeat-x,
+      linear-gradient(#000 0 0) center / 100% calc(100% - 15px) no-repeat;
+    mask:
+      conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / 14px 8px repeat-x,
+      conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / 14px 8px repeat-x,
+      linear-gradient(#000 0 0) center / 100% calc(100% - 15px) no-repeat;
+  }
+  .ticket {
+    rotate: -1.4deg;
+  }
+  .head {
+    color: var(--muted);
+    line-height: 1.4;
+  }
+  .big {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 5.4rem;
+    line-height: 1;
+    letter-spacing: -0.07em;
+  }
+  .big .em {
+    font-size: 2.3rem;
+    letter-spacing: -0.03em;
+  }
+  dl {
+    display: grid;
+    gap: 5px;
+    padding-block: 12px;
+    border-block: 2px dashed var(--rule);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+  }
+  dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 0.92rem;
+  }
+  .note {
+    font-size: 0.78rem;
+    line-height: 1.36;
+    color: var(--muted);
+  }
+  .stamp {
+    position: absolute;
+    right: 16px;
+    top: 26px;
+    --stamp-color: #d62f2f;
+    rotate: 9deg;
+  }
+  .buy-body {
+    padding: 20px;
+  }
+  @media (max-width: 1180px) {
+    .price {
+      grid-template-columns: 1fr;
+    }
+    .buy {
+      max-width: 560px;
+    }
+  }
+  @media (max-width: 680px) {
+    .left {
+      grid-template-columns: 1fr;
+    }
+    .ticket {
+      max-width: 340px;
+    }
+  }
+</style>

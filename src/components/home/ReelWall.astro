@@ -1,0 +1,13 @@
+---
+import { env } from "cloudflare:workers"
+import { listReels } from "@/lib/reels"
+import ReelCard from "./ReelCard.astro"
+import ReelSlots from "./ReelSlots.astro"
+
+const WALL = 5
+const reels = await listReels(env, WALL)
+Astro.response.headers.set("cache-control", "public, max-age=60, s-maxage=300")
+---
+
+{reels.map((reel) => <ReelCard reel={reel} />)}
+{reels.length < WALL && <ReelSlots count={WALL - reels.length} from={reels.length} />}

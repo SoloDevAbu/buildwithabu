@@ -1,0 +1,64 @@
+---
+const items = [
+  ["An AI coding agent", "Claude Code, Codex, Cursor or similar. Any plan or usage cost is separate from the kit."],
+  ["A computer that can render", "Windows, macOS or Linux, with Node.js 18+, ffmpeg and Python 3.10 to 3.14. The doctor command installs what it can and prints the rest."],
+  ["Comfort pasting into a terminal", "You will not edit video, but you will run an agent in a project folder."],
+  ["Your own music, if you want it", "Not included. Without tracks, reels are voice only."],
+  ["Time for first-run downloads", "Whisper's model is about 480 MB. Fonts and browser download once."],
+  ["Remotion's licence, for bigger teams", "Companies of four or more need a Remotion company licence."],
+]
+---
+
+<div class="req">
+  <p class="kicker">// before you buy. there are no refunds, so check this first</p>
+  <ul>
+    {
+      items.map(([title, note]) => (
+        <li>
+          <span class="box" aria-hidden="true">✓</span>
+          <p>
+            <b>{title}.</b> {note}
+          </p>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .req {
+    display: grid;
+    gap: 14px;
+  }
+  ul {
+    display: grid;
+    gap: 11px;
+  }
+  li {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 11px;
+    font-size: 0.96rem;
+    line-height: 1.38;
+  }
+  li p {
+    color: var(--muted);
+  }
+  li b {
+    color: var(--fg);
+    font-weight: 600;
+  }
+  .box {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    margin-top: 1px;
+    border: 2px solid var(--line);
+    border-radius: 5px;
+    font-size: 0.74rem;
+    line-height: 1;
+    color: var(--accent);
+    font-weight: 800;
+  }
+</style>
