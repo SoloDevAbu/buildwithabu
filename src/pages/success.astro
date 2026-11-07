@@ -1,0 +1,21 @@
+---
+import SuccessPanel from "@/islands/SuccessPanel"
+import Layout from "@/layouts/main.astro"
+---
+
+<Layout title="Your order | Reel Studio Kit" description="Your Reel Studio Kit download." path="/success" noindex>
+  <meta slot="head" name="referrer" content="no-referrer" />
+  <div class="wrap page">
+    <SuccessPanel client:load />
+  </div>
+</Layout>
+
+<style>
+  .page {
+    display: grid;
+    gap: 24px;
+    justify-items: start;
+    padding-block: clamp(50px, 8vw, 110px);
+    min-height: 60svh;
+  }
+</style>

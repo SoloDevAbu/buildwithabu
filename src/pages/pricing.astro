@@ -1,0 +1,62 @@
+---
+import FaqList from "@/components/home/FaqList.astro"
+import PriceBlock from "@/components/home/PriceBlock.astro"
+import { FAQ } from "@/data/faq"
+import Layout from "@/layouts/main.astro"
+import { breadcrumbs, faqPage, product } from "@/lib/schema"
+import { SITE } from "@/lib/site"
+
+const buying = FAQ.filter((f) => f.group === "buying")
+---
+
+<Layout
+  title="Pricing: Reel Studio Kit for $16, One Time"
+  description="Reel Studio Kit costs $16 once, with no subscription and no per-video fee. See what's included, what you need, and the refund policy before you buy."
+  path="/pricing"
+  mood="ink"
+  jsonLd={[product, breadcrumbs([{ name: "Pricing", path: "/pricing" }]), faqPage(buying)]}
+>
+  <section class="top" data-mood="ink">
+    <div class="wrap">
+      <header>
+        <p class="kicker">// pricing</p>
+        <h1 class="h2">{SITE.priceLabel}. <span class="em">Once.</span> That's the whole model.</h1>
+        <p class="lede">
+          Reel Studio Kit is a one-time purchase of {SITE.priceLabel} USD. You get the full folder, unlimited reels for you and your clients, and updates to version 1. No subscription and no per-video fee.
+        </p>
+      </header>
+      <PriceBlock />
+    </div>
+  </section>
+  <section class="rest" data-mood="light">
+    <div class="wrap">
+      <h2 class="h2">Before you <span class="em">pay.</span></h2>
+      <FaqList items={buying} />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .top {
+    padding-block: clamp(36px, 6vw, 80px) clamp(70px, 9vw, 110px);
+    background: #181916;
+  }
+  .rest {
+    padding-block: clamp(60px, 8vw, 100px);
+    background: var(--paper);
+    color: var(--ink);
+    --fg: var(--ink);
+    --line: var(--ink);
+    --muted: #565962;
+    --accent: #cf4114;
+  }
+  .rest h2 {
+    margin-bottom: 28px;
+  }
+  header {
+    display: grid;
+    gap: 16px;
+    max-width: 880px;
+    margin-bottom: clamp(34px, 5vw, 60px);
+  }
+</style>
