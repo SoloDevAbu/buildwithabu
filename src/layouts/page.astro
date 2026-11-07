@@ -1,0 +1,48 @@
+---
+// Long-form page shell: label, title, answer-first summary, then the article.
+import Layout from "@/layouts/main.astro"
+
+type Props = {
+  title: string
+  description: string
+  path: string
+  kicker: string
+  heading: string
+  summary?: string
+  updated?: string
+  type?: "website" | "article"
+  noindex?: boolean
+  jsonLd?: object[]
+}
+
+const { title, description, path, kicker, heading, summary, updated, type, noindex, jsonLd } = Astro.props
+---
+
+<Layout {title} {description} {path} {type} {noindex} {jsonLd}>
+  <article class="wrap page">
+    <header>
+      <p class="kicker">// {kicker}</p>
+      <h1 class="h2">{heading}</h1>
+      {summary && <p class="lede summary">{summary}</p>}
+      {updated && <p class="kicker">Last updated {updated}</p>}
+    </header>
+    <div class="prose"><slot /></div>
+    <slot name="after" />
+  </article>
+</Layout>
+
+<style>
+  .page {
+    padding-block: clamp(36px, 6vw, 80px) clamp(70px, 9vw, 120px);
+  }
+  header {
+    display: grid;
+    gap: 16px;
+    max-width: 880px;
+    margin-bottom: clamp(30px, 4vw, 54px);
+  }
+  .summary {
+    max-width: 62ch;
+    color: var(--fg);
+  }
+</style>

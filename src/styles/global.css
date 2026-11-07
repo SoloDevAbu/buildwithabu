@@ -1,133 +1,538 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-@import "@fontsource-variable/inter";
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource-variable/jetbrains-mono/wght.css";
+@import "@fontsource/instrument-serif/400-italic.css";
+@import "@fontsource/anton/400.css";
 
-@custom-variant dark (&:is(.dark *));
+/* ── Tokens. Values are the kit's own measured look (src/brand.ts), with the accent nudged darker
+      only where it carries text on paper, so it passes contrast. ─────────────────────────────── */
+:root {
+  --paper: #e8e9e1;
+  --white: #ffffff;
+  --ink: #121316;
+  --ink-soft: #181916;
+  --slate: #6a6963;
+  --coral: #ee5d31;
+  --yellow: #fee75c;
+  --green: #10b981;
+  --red: #ef4444;
+
+  --bg: var(--paper);
+  --fg: var(--ink);
+  --muted: #565962;
+  --line: var(--ink);
+  --rule: rgb(18 19 22 / 0.16);
+  --accent: #cf4114;
+  --shadow: var(--ink);
+  --weave: rgb(40 40 30 / 0.055);
+
+  --sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --serif: "Instrument Serif", "Times New Roman", serif;
+  --mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --poster: "Anton", Impact, sans-serif;
+
+  --gutter: clamp(16px, 4.4vw, 56px);
+  --radius: 18px;
+  --spring: cubic-bezier(0.2, 1.4, 0.4, 1);
+  color-scheme: light;
+}
+
+[data-mood="ink"] {
+  --bg: var(--ink-soft);
+  --fg: #efefe7;
+  --muted: #b1b3a9;
+  --line: #efefe7;
+  --rule: rgb(239 239 231 / 0.18);
+  --accent: #f6784f;
+  --shadow: #000;
+  --weave: rgb(255 255 255 / 0.018);
+}
+
+[data-mood="slate"] {
+  --bg: #5f5e58;
+  --fg: #fbfbf5;
+  --muted: #efefe6;
+  --line: #121316;
+  --rule: rgb(255 255 255 / 0.25);
+  --accent: var(--yellow);
+  --shadow: #121316;
+  --weave: rgb(0 0 0 / 0.05);
+}
 
 @theme inline {
-    --font-heading: var(--font-sans);
-    --font-sans: 'Inter Variable', sans-serif;
-    --color-sidebar-ring: var(--sidebar-ring);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar: var(--sidebar);
-    --color-chart-5: var(--chart-5);
-    --color-chart-4: var(--chart-4);
-    --color-chart-3: var(--chart-3);
-    --color-chart-2: var(--chart-2);
-    --color-chart-1: var(--chart-1);
-    --color-ring: var(--ring);
-    --color-input: var(--input);
-    --color-border: var(--border);
-    --color-destructive: var(--destructive);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-accent: var(--accent);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-muted: var(--muted);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-secondary: var(--secondary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-primary: var(--primary);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-popover: var(--popover);
-    --color-card-foreground: var(--card-foreground);
-    --color-card: var(--card);
-    --color-foreground: var(--foreground);
-    --color-background: var(--background);
-    --radius-sm: calc(var(--radius) * 0.6);
-    --radius-md: calc(var(--radius) * 0.8);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) * 1.4);
-    --radius-2xl: calc(var(--radius) * 1.8);
-    --radius-3xl: calc(var(--radius) * 2.2);
-    --radius-4xl: calc(var(--radius) * 2.6);
+  --font-sans: var(--sans);
+  --font-serif: var(--serif);
+  --font-mono: var(--mono);
 }
 
-:root {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --radius: 0.625rem;
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+/* ── Canvas ─────────────────────────────────────────────────────────────────────────────── */
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+  -webkit-text-size-adjust: 100%;
 }
 
-.dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.87 0 0);
-    --chart-2: oklch(0.556 0 0);
-    --chart-3: oklch(0.439 0 0);
-    --chart-4: oklch(0.371 0 0);
-    --chart-5: oklch(0.269 0 0);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+body {
+  min-height: 100svh;
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--fg);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--weave) 1px, transparent 1px),
+    linear-gradient(90deg, var(--weave) 1px, transparent 1px);
+  background-size: 6px 6px;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-    }
-  body {
-    @apply bg-background text-foreground;
-    }
-  button:not(:disabled), [role="button"]:not(:disabled) {
-    cursor: pointer;
-    }
+/* Paper grain. A flat SVG noise tile, so it costs one paint and never animates. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Without JS each section paints its own mood. With JS the whole viewport hard-cuts together,
+   so the section tokens are dropped back to whatever <html> says. */
+section[data-mood] {
+  background: var(--bg);
+  color: var(--fg);
+}
+html.js section[data-mood] {
+  background: transparent;
+  --bg: inherit;
+  --fg: inherit;
+  --muted: inherit;
+  --line: inherit;
+  --rule: inherit;
+  --accent: inherit;
+  --shadow: inherit;
+  --weave: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Type ───────────────────────────────────────────────────────────────────────────────── */
+.wrap {
+  width: min(100%, 1320px);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.display {
+  font-weight: 500;
+  font-size: clamp(2.75rem, 7.6vw, 6.9rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.h2 {
+  font-weight: 500;
+  font-size: clamp(2.25rem, 5.6vw, 4.9rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.h3 {
+  font-weight: 600;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.lede {
+  font-size: clamp(1.08rem, 1.55vw, 1.32rem);
+  line-height: 1.45;
+  letter-spacing: -0.012em;
+  color: var(--muted);
+  max-width: 44ch;
+  text-wrap: pretty;
+}
+
+/* The reels' emphasis word: coral serif italic, slightly larger than the grotesk around it. */
+.em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.1em;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+.mono {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: -0.01em;
+}
+
+.kicker {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--muted);
+  letter-spacing: -0.01em;
+}
+
+/* ── Surfaces ───────────────────────────────────────────────────────────────────────────── */
+.sheet {
+  --fg: var(--ink);
+  --muted: #565962;
+  --accent: #cf4114;
+  --rule: rgb(18 19 22 / 0.14);
+  --line: var(--ink);
+  position: relative;
+  background: var(--white);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+}
+
+.sheet--ink {
+  --fg: #efefe7;
+  --muted: #b1b3a9;
+  --accent: #f6784f;
+  --rule: rgb(239 239 231 / 0.16);
+  --line: #efefe7;
+  background: #16181d;
+  color: #efefe7;
+  border-color: #000;
+}
+
+.sheet--yellow {
+  background: var(--yellow);
+}
+
+.dither {
+  position: absolute;
+  pointer-events: none;
+  overflow: visible;
+  fill: var(--shadow);
+  max-width: none;
+}
+
+/* Sheets of paper peeking out under a card. */
+.stack {
+  isolation: isolate;
+}
+.stack::before,
+.stack::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  border-radius: inherit;
+  transform: translate(-7px, 9px) rotate(-1.2deg);
+}
+.stack::after {
+  z-index: -2;
+  transform: translate(-14px, 18px) rotate(-2.4deg);
+}
+
+.win-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 14px;
+  border-bottom: 2px solid var(--ink);
+  background: #f1f1ec;
+  border-radius: calc(var(--radius) - 2px) calc(var(--radius) - 2px) 0 0;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: #565962;
+}
+.sheet--ink .win-head {
+  background: #0d0e11;
+  border-color: #000;
+  color: #b1b3a9;
+}
+.win-head i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--coral);
+  box-shadow:
+    14px 0 0 var(--yellow),
+    28px 0 0 var(--green);
+  margin-right: 28px;
+}
+
+.sticker {
+  position: relative;
+  display: inline-grid;
+  gap: 1px;
+  padding: 7px 13px 8px;
+  background: var(--white);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 9px;
+  rotate: -3deg;
+}
+.sticker small {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #cf4114;
+}
+.sticker b {
+  font-weight: 700;
+  font-size: 0.98rem;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  background: var(--coral);
+  color: var(--ink);
+  box-shadow:
+    0 0 0 2.5px var(--white),
+    0 0 0 4px var(--ink);
+  rotate: 5deg;
+}
+
+/* The inked double-frame stamp. */
+.stamp {
+  display: inline-block;
+  padding: 0.14em 0.42em 0.1em;
+  font-family: var(--poster);
+  font-size: var(--stamp, 1.6rem);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--stamp-color, #d62f2f);
+  border: 3px solid currentColor;
+  outline: 1.5px solid currentColor;
+  outline-offset: 2.5px;
+  border-radius: 6px;
+  rotate: -7deg;
+}
+.stamp.slam {
+  animation: slam 0.34s var(--spring) both;
+}
+@keyframes slam {
+  from {
+    opacity: 0;
+    scale: 2.6;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.tape {
+  height: 26px;
+  background: repeating-linear-gradient(-45deg, var(--yellow) 0 18px, var(--ink) 18px 36px);
+  border-block: 2px solid var(--ink);
+}
+
+/* ── Buttons ────────────────────────────────────────────────────────────────────────────── */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 24px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: var(--coral);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: -0.015em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: translate 0.14s var(--spring);
+}
+.btn:hover {
+  translate: -2px -3px;
+}
+.btn:active {
+  translate: 1px 1px;
+}
+.btn[disabled] {
+  opacity: 0.55;
+  cursor: wait;
+  translate: none;
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--fg);
+  border-color: var(--line);
+}
+.btn--paper {
+  background: var(--white);
+}
+.btn--sm {
+  min-height: 40px;
+  padding: 0 14px;
+  font-size: 0.9rem;
+  border-radius: 10px;
+}
+.link {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+.link:hover {
+  color: var(--accent);
+}
+
+/* ── Sections ───────────────────────────────────────────────────────────────────────────── */
+.chapter {
+  padding-block: clamp(72px, 11vw, 150px);
+}
+.chapter-head {
+  display: grid;
+  gap: 18px;
+  margin-bottom: clamp(36px, 5vw, 64px);
+  max-width: 900px;
+}
+
+/* ── Pop-in. Only armed by JS, so nothing is ever invisible without it. ─────────────────── */
+html.js:not(.calm) [data-pop]:not(.in) {
+  opacity: 0;
+  translate: 0 18px;
+  scale: 0.97;
+}
+html.js [data-pop].in {
+  transition:
+    opacity 0.18s linear,
+    translate 0.42s var(--spring),
+    scale 0.42s var(--spring);
+  transition-delay: calc(var(--i, 0) * 60ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
   html {
-    @apply font-sans;
-    }
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Long-form pages ────────────────────────────────────────────────────────────────────── */
+.prose {
+  max-width: 70ch;
+  font-size: 1.06rem;
+  line-height: 1.68;
+}
+.prose > * + * {
+  margin-top: 1.05em;
+}
+.prose h2 {
+  margin-top: 2.1em;
+  font-weight: 600;
+  font-size: 1.7rem;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+.prose h3 {
+  margin-top: 1.7em;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+}
+.prose a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose ul,
+.prose ol {
+  padding-left: 1.3em;
+}
+.prose ul {
+  list-style: square;
+}
+.prose ol {
+  list-style: decimal;
+}
+.prose li + li {
+  margin-top: 0.35em;
+}
+.prose li::marker {
+  color: var(--accent);
+}
+.prose code {
+  font-family: var(--mono);
+  font-size: 0.87em;
+  padding: 0.1em 0.35em;
+  border-radius: 5px;
+  background: rgb(18 19 22 / 0.08);
+}
+.prose pre {
+  padding: 16px 18px;
+  overflow-x: auto;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  background: #16181d;
+  color: #efefe7;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.prose pre code {
+  padding: 0;
+  background: none;
+  font-size: inherit;
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.prose th,
+.prose td {
+  padding: 10px 12px;
+  border-bottom: 1.5px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+.prose th {
+  border-bottom-color: var(--line);
+}
+.prose blockquote {
+  padding-left: 16px;
+  border-left: 4px solid var(--coral);
+  color: var(--muted);
+}
+.table-scroll {
+  overflow-x: auto;
 }

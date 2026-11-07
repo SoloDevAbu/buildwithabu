@@ -1,15 +1,68 @@
 ---
 import "@/styles/global.css"
+import interUrl from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url"
+import serifUrl from "@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2?url"
+import Head from "@/components/seo/Head.astro"
+import Footer from "@/components/Footer.astro"
+import Nav from "@/components/Nav.astro"
+import { organization, person, website } from "@/lib/schema"
+
+type Props = {
+  title: string
+  description: string
+  path?: string
+  image?: string
+  type?: "website" | "article"
+  noindex?: boolean
+  jsonLd?: object[]
+  mood?: "light" | "ink" | "slate"
+}
+
+const { title, description, path, image, type, noindex, jsonLd = [], mood = "light" } = Astro.props
+const graph = noindex ? [] : [organization, person, website, ...jsonLd]
 ---
 
-<html lang="en">
+<!doctype html>
+<html lang="en" data-mood={mood}>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#e8e9e1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Astro App</title>
+    <link rel="preload" href={interUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={serifUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="alternate" type="application/rss+xml" title="Build with Abu guides" href="/rss.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script is:inline>
+      document.documentElement.classList.add("js")
+    </script>
+    <Head {title} {description} {path} {image} {type} {noindex} jsonLd={graph} />
+    <slot name="head" />
   </head>
   <body>
-    <slot />
+    <a class="skip" href="#main">Skip to content</a>
+    <Nav />
+    <main id="main"><slot /></main>
+    <Footer />
+    <slot name="after" />
+    <script>
+      import "@/scripts/client"
+    </script>
+    <style>
+      .skip {
+        position: fixed;
+        top: -60px;
+        left: 12px;
+        z-index: 80;
+        padding: 8px 14px;
+        background: var(--white);
+        color: var(--ink);
+        border: 2px solid var(--ink);
+        border-radius: 8px;
+      }
+      .skip:focus {
+        top: 12px;
+      }
+    </style>
   </body>
 </html>
