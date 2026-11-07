@@ -1,0 +1,54 @@
+---
+import Legal from "@/layouts/legal.astro"
+import { POLICY, SITE } from "@/lib/site"
+---
+
+<Legal
+  title="Privacy Policy | Build with Abu"
+  description="What data Build with Abu collects when you visit or buy Reel Studio Kit, why, who processes it and how to reach us about it."
+  path="/legal/privacy"
+  heading="Privacy Policy"
+  summary="We collect only what we need to sell you the kit and deliver it. We don't sell your data, and we don't send marketing unless you ask for it."
+  updated={POLICY.privacy}
+>
+  <h2>Who is responsible</h2>
+  <p>{SITE.seller}, operating as {SITE.brand}, {SITE.sellerCountry}. Contact: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+
+  <h2>What we collect</h2>
+  <table>
+    <thead><tr><th>Data</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td>Email address</td><td>To check for an earlier purchase, deliver the kit and support your order</td></tr>
+      <tr><td>Consent record: policy versions, time</td><td>To show what you agreed to</td></tr>
+      <tr><td>Order record: payment ID, status, amount</td><td>To unlock your download, spot duplicate payments and keep business records</td></tr>
+      <tr><td>Download log: payment ID, version, time</td><td>To stop link abuse</td></tr>
+      <tr><td>Messages you send us</td><td>To reply</td></tr>
+    </tbody>
+  </table>
+  <p>Your card and billing details go directly to Dodo Payments. We don't receive your full card number.</p>
+  <p>Your IP address is processed briefly by Cloudflare to deliver the site and to limit repeated checkout attempts. We don't store it in our order database.</p>
+
+  <h2>Legal basis</h2>
+  <p>We process this data to perform our contract with you, to comply with legal and tax obligations, and for our legitimate interest in preventing fraud and abuse.</p>
+
+  <h2>Who processes it</h2>
+  <ul>
+    <li><strong>Dodo Payments</strong>: Merchant of Record for payment, tax, receipts and delivery email. It acts under its own privacy policy.</li>
+    <li><strong>Cloudflare</strong>: hosting, database, file storage, security and privacy-friendly web analytics.</li>
+  </ul>
+  <p>These providers may process data outside your country, including in the United States and India, under their own safeguards.</p>
+
+  <h2>How long we keep it</h2>
+  <p>We keep order and consent records for as long as you may need the download and as tax and legal rules require. Download logs are kept for up to 12 months. Support emails are kept while they're useful for your order.</p>
+
+  <h2>Your rights</h2>
+  <p>
+    Depending on where you live, including under India's Digital Personal Data Protection Act and the GDPR, you can ask to access, correct or delete your data, object to or limit its use, and complain to your data protection authority. Email us to do this. We may have to keep records the law requires.
+  </p>
+
+  <h2>Children</h2>
+  <p>The kit is for adults. If you are under 18, please buy with a parent or guardian.</p>
+
+  <h2>Changes</h2>
+  <p>We'll update the date above when this policy changes.</p>
+</Legal>

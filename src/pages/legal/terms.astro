@@ -1,0 +1,65 @@
+---
+import Legal from "@/layouts/legal.astro"
+import { POLICY, REFUND_WINDOW_DAYS, SITE } from "@/lib/site"
+---
+
+<Legal
+  title="Terms of Sale | Reel Studio Kit"
+  description="The terms that apply when you buy Reel Studio Kit from Build with Abu, sold through Dodo Payments as Merchant of Record."
+  path="/legal/terms"
+  heading="Terms of Sale"
+  summary={`These terms apply when you buy ${SITE.product}, a digital download, for a one-time ${SITE.priceLabel}. Paying means you accept them, along with the Licence and the Refund Policy.`}
+  updated={POLICY.terms}
+>
+  <h2>1. Who you are dealing with</h2>
+  <p>
+    {SITE.product} is created by {SITE.seller}, an individual based in {SITE.sellerCountry}, operating as {SITE.brand} ("we"). Orders are processed by Dodo Payments, our Merchant of Record and authorised reseller. Dodo Payments is the seller of record for your payment, issues your receipt, collects applicable sales tax or VAT, and appears on your statement. Its own buyer terms also apply to the payment.
+  </p>
+
+  <h2>2. The product</h2>
+  <p>
+    The product is a downloadable project folder of source code, agent instructions, tools and documentation for making vertical videos with an AI coding agent. It is not a hosted service. It runs on your own computer.
+  </p>
+  <p>You are responsible for meeting the requirements listed on the <a href="/pricing">pricing page</a>, including having your own AI coding agent and any plan or usage it needs. Third-party tools are not part of the sale and have their own terms and licences. These include your AI agent, Remotion, ffmpeg, Whisper models, voice services and any music you use.</p>
+
+  <h2>3. Price and payment</h2>
+  <p>
+    The price is {SITE.priceLabel} USD, paid once. Taxes may be added at checkout. There is no subscription. Payment is taken by Dodo Payments and we never see your full card details.
+  </p>
+
+  <h2>4. Delivery</h2>
+  <p>Delivery is digital and starts immediately after your payment is confirmed. You get a download on the success page and by email. Delivery does not depend on any physical shipment.</p>
+
+  <h2>5. Refunds and your right to withdraw</h2>
+  <p>
+    Purchases are final, except a duplicate payment reported within {REFUND_WINDOW_DAYS} days, as explained in the <a href="/legal/refunds">Refund Policy</a>. Before paying, you ask for immediate delivery and acknowledge that you lose any right of withdrawal once delivery starts. Nothing in these terms removes rights you have under mandatory consumer law.
+  </p>
+
+  <h2>6. Licence</h2>
+  <p>Your use of the kit is covered by the <a href="/legal/license">Licence</a>. You may use it for unlimited reels, but you may not share or resell the kit.</p>
+
+  <h2>7. Your content</h2>
+  <p>
+    You own the scripts and videos you make, to the extent the law allows. You are responsible for what you publish, including factual accuracy, rights in any music, logos, trademarks or likenesses, and following each platform's rules. The workflow makes the agent cite sources, but you must read them.
+  </p>
+
+  <h2>8. No guarantee of results</h2>
+  <p>We do not promise views, followers, income or any particular result. Output depends on your agent, topic, hardware and direction. AI agents can make mistakes, so review everything before you post it.</p>
+
+  <h2>9. Warranty and liability</h2>
+  <p>
+    The kit is provided "as is" to the extent the law allows. To the extent the law allows, we are not liable for indirect or consequential loss, and our total liability to you is limited to the amount you paid for the kit. Nothing here limits liability that cannot be limited by law.
+  </p>
+
+  <h2>10. Ending your licence</h2>
+  <p>If you breach the Licence, or a payment is refunded or reversed, your right to use the kit ends and download access closes.</p>
+
+  <h2>11. Changes</h2>
+  <p>We may update these terms for future purchases. The version you accepted at checkout is the one recorded with your order.</p>
+
+  <h2>12. Governing law</h2>
+  <p>These terms are governed by the laws of India, and the courts of India have jurisdiction, without taking away any mandatory protection you have where you live.</p>
+
+  <h2>13. Contact</h2>
+  <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+</Legal>

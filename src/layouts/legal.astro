@@ -1,0 +1,20 @@
+---
+import Page from "@/layouts/page.astro"
+import { breadcrumbs } from "@/lib/schema"
+
+type Props = { title: string; description: string; path: string; heading: string; summary: string; updated: string }
+const { title, description, path, heading, summary, updated } = Astro.props
+---
+
+<Page
+  {title}
+  {description}
+  {path}
+  {heading}
+  {summary}
+  {updated}
+  kicker="legal"
+  jsonLd={[breadcrumbs([{ name: heading, path }])]}
+>
+  <slot />
+</Page>

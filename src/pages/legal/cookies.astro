@@ -1,0 +1,23 @@
+---
+import Legal from "@/layouts/legal.astro"
+import { POLICY } from "@/lib/site"
+---
+
+<Legal
+  title="Cookie Policy | Build with Abu"
+  description="This site doesn't use tracking or advertising cookies, so there's no cookie banner. Here's what happens instead."
+  path="/legal/cookies"
+  heading="Cookie Policy"
+  summary="This site sets no tracking or advertising cookies, which is why you don't see a cookie banner."
+  updated={POLICY.cookies}
+>
+  <h2>Our site</h2>
+  <p>We don't use ad pixels or cross-site tracking. Page statistics come from Cloudflare Web Analytics, which is cookieless and doesn't build visitor profiles.</p>
+  <p>Cloudflare may set a strictly necessary security cookie if it needs to tell people from bots. These cookies don't need consent because the site can't be protected without them.</p>
+
+  <h2>Checkout</h2>
+  <p>When you continue to payment you move to Dodo Payments' hosted checkout. It may use its own necessary cookies for security and fraud prevention, under its own policy.</p>
+
+  <h2>If this changes</h2>
+  <p>If we ever add non-essential cookies, we'll ask for your consent first and update this page.</p>
+</Legal>

@@ -1,0 +1,46 @@
+---
+import Legal from "@/layouts/legal.astro"
+import { POLICY, SITE } from "@/lib/site"
+---
+
+<Legal
+  title="Licence | Reel Studio Kit Personal Commercial Licence"
+  description="What you can and can't do with Reel Studio Kit: unlimited reels for you and your clients, with no sharing or reselling the kit itself."
+  path="/legal/license"
+  heading="Personal Commercial Licence"
+  summary="Make unlimited reels, for yourself and for paying clients, and keep everything you make. Just don't share or resell the kit."
+  updated={POLICY.license}
+>
+  <h2>You can</h2>
+  <ul>
+    <li>Use the kit to make unlimited videos, on any devices you personally use</li>
+    <li>Sell, monetise and publish those videos, and make them for clients</li>
+    <li>Change the code, components and instructions for your own use</li>
+  </ul>
+
+  <h2>You can't</h2>
+  <ul>
+    <li>Share, publish or give away the kit or any substantial part of it, including in a public repository</li>
+    <li>Sell, sublicense or rent the kit, or sell a modified version, template pack or course built mainly from it</li>
+    <li>Offer the kit as a hosted service where others run it</li>
+    <li>Train or publish an AI model or skill pack using the kit as a dataset</li>
+  </ul>
+
+  <h2>Who it covers</h2>
+  <p>One licence covers one person. If several people need the kit, each buys a copy.</p>
+
+  <h2>Ownership</h2>
+  <p>
+    {SITE.seller} keeps ownership of the kit. You own the videos you make, subject to the rights of anything you put into them. The bundled third-party material stays under its own licence, and the kit lists those notices.
+  </p>
+
+  <h2>Third-party licences</h2>
+  <ul>
+    <li><strong>Remotion</strong>, the video engine, is installed separately and has its own licence. It's free for individuals and small teams, while companies with four or more people need a company licence. See <a href="https://www.remotion.dev/license" rel="noopener">remotion.dev/license</a>.</li>
+    <li><strong>Voices</strong> come from Microsoft Edge neural voices through edge-tts, or Kokoro-82M. Check the terms of the service you use before commercial use.</li>
+    <li><strong>Music and logos</strong> that you add remain your responsibility.</li>
+  </ul>
+
+  <h2>If this licence ends</h2>
+  <p>This licence ends if you break it, or if your payment is refunded or reversed. You must then stop using the kit. Videos you already published fairly under it stay yours.</p>
+</Legal>

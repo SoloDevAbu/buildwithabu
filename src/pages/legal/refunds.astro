@@ -1,0 +1,49 @@
+---
+import Legal from "@/layouts/legal.astro"
+import { POLICY, REFUND_WINDOW_DAYS, SITE } from "@/lib/site"
+---
+
+<Legal
+  title="Refund Policy | Reel Studio Kit"
+  description={`Reel Studio Kit has no refunds, except duplicate payments reported within ${REFUND_WINDOW_DAYS} days. How to request one and how long it takes.`}
+  path="/legal/refunds"
+  heading="Refund Policy"
+  summary={`All sales are final. The one exception: if you were charged twice for the same product, tell us within ${REFUND_WINDOW_DAYS} days and we refund the duplicate payment.`}
+  updated={POLICY.refund}
+>
+  <h2>Why there are no refunds</h2>
+  <p>
+    {SITE.product} is a digital download of source code, delivered instantly, and it can't be returned once you have it. That's why the requirements are listed right next to the buy button. Please check them before you pay.
+  </p>
+
+  <h2>When you can get a refund</h2>
+  <p>
+    You paid twice for the same product. We refund the extra payment in full. You keep one copy under one licence.
+  </p>
+  <p>We also stop this before it happens: checkout refuses an email that already owns the kit. Different emails or cards can still cause a duplicate, and that's covered here.</p>
+
+  <h2>What isn't covered</h2>
+  <ul>
+    <li>Changing your mind, or no longer needing the kit</li>
+    <li>Not having an AI coding agent or the listed requirements</li>
+    <li>Not liking your results, or an AI agent's cost or behaviour</li>
+    <li>Changes to third-party tools, platforms or voices</li>
+  </ul>
+
+  <h2>How to request one</h2>
+  <ol>
+    <li>Email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> within {REFUND_WINDOW_DAYS} days of the duplicate payment.</li>
+    <li>Include the payment IDs from both receipts and the email used.</li>
+    <li>Once confirmed, the refund goes through Dodo Payments to your original payment method. Your bank then controls how long it takes to appear.</li>
+  </ol>
+
+  <h2>Your legal rights</h2>
+  <p>
+    This policy doesn't remove any right you have under mandatory consumer law, such as a remedy for a faulty product. Before paying you ask for immediate delivery of digital content and acknowledge that you lose any right of withdrawal once delivery starts, which is how EU and UK cooling-off rules treat digital downloads.
+  </p>
+
+  <h2>Before opening a bank dispute</h2>
+  <p>
+    Your statement shows Dodo Payments, not our name, and it usually begins with DODOPAY_. If you don't recognise a charge or something went wrong, email us first. It's the fastest route to a fix.
+  </p>
+</Legal>
