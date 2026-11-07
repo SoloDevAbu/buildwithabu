@@ -1,0 +1,59 @@
+---
+import { env } from "cloudflare:workers"
+import ReelCard from "@/components/home/ReelCard.astro"
+import ReelSlots from "@/components/home/ReelSlots.astro"
+import Layout from "@/layouts/main.astro"
+import { listReels } from "@/lib/reels"
+import { breadcrumbs } from "@/lib/schema"
+import { SITE } from "@/lib/site"
+
+export const prerender = false
+
+const reels = await listReels(env)
+Astro.response.headers.set("cache-control", "public, max-age=60, s-maxage=600")
+
+const itemList = {
+  "@type": "ItemList",
+  itemListElement: reels.map((reel, i) => ({ "@type": "ListItem", position: i + 1, url: `${SITE.url}/reels/${reel.slug}`, name: reel.title })),
+}
+---
+
+<Layout
+  title="Reels Made with Reel Studio Kit | Real Output, Unedited"
+  description="Watch vertical reels made end to end with Reel Studio Kit: research, script, voice, captions, scenes and render, driven by one line in an AI coding agent."
+  path="/reels"
+  noindex={reels.length === 0}
+  jsonLd={reels.length ? [breadcrumbs([{ name: "Reels", path: "/reels" }]), itemList] : []}
+>
+  <div class="wrap page">
+    <header>
+      <p class="kicker">// output</p>
+      <h1 class="h2">Reels made with <span class="em">the kit.</span></h1>
+      <p class="lede">Real output, 1080 × 1920 at the source. Open one to watch it with sound and read its transcript.</p>
+    </header>
+    <div class="grid">
+      {reels.map((reel, i) => <ReelCard reel={reel} eager={i < 4} />)}
+      {reels.length < 8 && <ReelSlots count={8 - reels.length} from={reels.length} />}
+    </div>
+    <p class="back"><a class="btn" href="/pricing">Make your own · {SITE.priceLabel} once</a></p>
+  </div>
+</Layout>
+
+<style>
+  .page {
+    padding-block: clamp(36px, 6vw, 80px) clamp(70px, 9vw, 120px);
+  }
+  header {
+    display: grid;
+    gap: 16px;
+    margin-bottom: clamp(34px, 5vw, 60px);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(46%, 230px), 1fr));
+    gap: clamp(14px, 2vw, 26px);
+  }
+  .back {
+    margin-top: 44px;
+  }
+</style>
