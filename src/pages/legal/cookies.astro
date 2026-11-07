@@ -8,12 +8,15 @@ import { POLICY } from "@/lib/site"
   description="This site doesn't use tracking or advertising cookies, so there's no cookie banner. Here's what happens instead."
   path="/legal/cookies"
   heading="Cookie Policy"
-  summary="This site sets no tracking or advertising cookies, which is why you don't see a cookie banner."
+  summary="This site sets no tracking or advertising cookies, which is why you don't see a cookie banner. The one cookie we set is for your download."
   updated={POLICY.cookies}
 >
   <h2>Our site</h2>
   <p>We don't use ad pixels or cross-site tracking. Page statistics come from Cloudflare Web Analytics, which is cookieless and doesn't build visitor profiles.</p>
   <p>Cloudflare may set a strictly necessary security cookie if it needs to tell people from bots. These cookies don't need consent because the site can't be protected without them.</p>
+
+  <h2>Your download</h2>
+  <p>When you continue to payment we set one strictly necessary cookie, <code>kit_pass</code>. It lets this browser, and no other, download the kit after you pay, so a copied link gives nobody else your purchase. It lasts one day, holds only a random value and isn't used for anything else.</p>
 
   <h2>Checkout</h2>
   <p>When you continue to payment you move to Dodo Payments' hosted checkout. It may use its own necessary cookies for security and fraud prevention, under its own policy.</p>

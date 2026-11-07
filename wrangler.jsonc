@@ -7,24 +7,34 @@
   "assets": { "binding": "ASSETS", "directory": "./dist" },
   "observability": { "enabled": true },
   "vars": {
-    // Flip to "live_mode" (and swap the product id + secrets) when Dodo approves the account.
+    // For live: set live_mode, the three live ids below, and the live secrets. See docs/launch.md.
     "DODO_ENVIRONMENT": "test_mode",
-    "DODO_PRODUCT_ID": "pdt_REPLACE_ME",
-    "PUBLIC_MEDIA_URL": "https://media.buildwithabu.xyz"
+    "DODO_PRODUCT_ID": "pdt_0NrRGZoUaFcz4q7zIL9EA",
+    "DODO_BRAND_ID": "brnd_0NrRGZbfqpOEyVtwaYjOv",
+    "DODO_ENTITLEMENT_ID": "ent_0NrRGZg4XddrwN7k3mo8n",
+    "PUBLIC_MEDIA_URL": "https://media.buildwithabu.xyz",
   },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "buildwithabu",
-      "database_id": "00000000-0000-0000-0000-000000000000",
-      "migrations_dir": "migrations"
-    }
+      "database_id": "43b93d71-6310-4c5c-a2c9-f9c4a43d3b6f",
+      "migrations_dir": "migrations",
+    },
   ],
   "r2_buckets": [
-    { "binding": "KIT", "bucket_name": "reel-kit-private" },
-    { "binding": "REELS", "bucket_name": "reels-public" }
+    { "binding": "REELS", "bucket_name": "reels-public" },
   ],
   "ratelimits": [
-    { "name": "CHECKOUT_LIMIT", "namespace_id": "1001", "simple": { "limit": 10, "period": 60 } }
-  ]
+    {
+      "name": "CHECKOUT_LIMIT",
+      "namespace_id": "1001",
+      "simple": { "limit": 10, "period": 60 },
+    },
+    {
+      "name": "STATUS_LIMIT",
+      "namespace_id": "1002",
+      "simple": { "limit": 60, "period": 60 },
+    },
+  ],
 }

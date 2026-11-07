@@ -78,7 +78,7 @@ export default function BuyPanel() {
       )}
       {state.kind === "owned" && (
         <p className="buy-msg buy-msg--ok" role="status">
-          {state.message}
+          {state.message} <a href={SITE.portalUrl}>Open the portal</a>
         </p>
       )}
       <p className="buy-fine">

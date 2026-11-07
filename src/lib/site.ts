@@ -8,6 +8,7 @@ export const SITE = {
   seller: "Abu Bakkar Siddique",
   sellerCountry: "India",
   email: "hello@buildwithabu.xyz",
+  portalUrl: "https://customer.dodopayments.com/login/bus_0NlpNOOrohD859RHnLSqD",
   instagram: "https://www.instagram.com/buildwithabu",
   instagramHandle: "@buildwithabu",
   x: "https://x.com/AbuBakkar2502",

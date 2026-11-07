@@ -10,9 +10,10 @@ CREATE TABLE consents (
 );
 CREATE INDEX idx_consents_email ON consents(email);
 
--- payment_id comes from Dodo. status: paid | refunded | disputed | chargeback
+-- payment_id comes from Dodo. status: paid | review | refunded | disputed | chargeback
 CREATE TABLE orders (
   payment_id TEXT PRIMARY KEY,
+  customer_id TEXT NOT NULL,
   email TEXT NOT NULL,
   status TEXT NOT NULL,
   total_amount INTEGER,
@@ -31,18 +32,9 @@ CREATE TABLE webhook_events (
   received_at TEXT NOT NULL
 );
 
-CREATE TABLE kit_releases (
-  version TEXT PRIMARY KEY,
-  r2_key TEXT NOT NULL,
-  sha256 TEXT NOT NULL,
-  size_bytes INTEGER NOT NULL,
-  released_at TEXT NOT NULL
-);
-
 CREATE TABLE downloads (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   payment_id TEXT NOT NULL,
-  version TEXT NOT NULL,
   created_at TEXT NOT NULL
 );
 CREATE INDEX idx_downloads_payment ON downloads(payment_id, created_at);

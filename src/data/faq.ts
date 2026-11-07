@@ -51,7 +51,7 @@ export const FAQ: Faq[] = [
   {
     group: "buying",
     q: "How do I receive it?",
-    a: "Right after payment the success page gives you a download, and a delivery email follows. Inside the zip, a setup prompt gets your agent to install everything.",
+    a: "Right after payment the success page gives you a download. It works in that browser for one hour, and after that the kit stays in the customer portal linked from your Dodo receipt. Inside the zip, a setup prompt gets your agent to install everything.",
   },
   {
     group: "buying",

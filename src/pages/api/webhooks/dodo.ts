@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro"
 import { env } from "cloudflare:workers"
-import { verifyWebhook } from "@/lib/dodo"
+import { getPayment, verifyWebhook } from "@/lib/dodo"
 import { applyDodoEvent } from "@/lib/orders"
 
 export const prerender = false
@@ -17,10 +17,13 @@ export const POST: APIRoute = async ({ request }) => {
 
   const webhookId = request.headers.get("webhook-id") ?? ""
   try {
-    await applyDodoEvent(env.DB, webhookId, event)
+    await applyDodoEvent(env.DB, webhookId, event, {
+      sale: { productId: env.DODO_PRODUCT_ID, brandId: env.DODO_BRAND_ID },
+      fetchPayment: (paymentId) => getPayment(env, paymentId),
+    })
     return new Response("ok")
   } catch (error) {
-    // A 5xx makes Dodo retry, which is what we want when the database blinks.
+    // A 5xx makes Dodo retry, which is what we want when the database or API blinks.
     console.error("webhook failed", webhookId, event.type, error)
     return new Response("retry", { status: 500 })
   }

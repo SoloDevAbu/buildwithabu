@@ -18,4 +18,69 @@ import Layout from "@/layouts/main.astro"
     padding-block: clamp(50px, 8vw, 110px);
     min-height: 60svh;
   }
+  /* The panel is a React island, so these reach past Astro's scoping. */
+  :global(.after) {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 64px);
+    grid-template-rows: auto 1fr;
+    align-items: start;
+    width: 100%;
+  }
+  :global(.after--single) {
+    grid-template-columns: minmax(0, 640px);
+    grid-template-rows: none;
+    gap: 22px;
+  }
+  :global(.after__main) {
+    display: grid;
+    gap: 26px;
+    justify-items: start;
+    min-width: 0;
+  }
+  :global(.after__setup) {
+    grid-column: 1;
+    width: 100%;
+    min-width: 0;
+  }
+  :global(.after > .after__help) {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+  :global(.after--single > .after__help) {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  :global(.after__help) {
+    display: grid;
+    gap: 16px;
+    padding: clamp(18px, 3vw, 28px);
+  }
+  :global(.after__warning) {
+    padding: 14px 16px;
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    background: var(--yellow);
+    color: var(--ink);
+  }
+  :global(.after__steps) {
+    display: grid;
+    gap: 10px;
+    padding-left: 1.3em;
+    list-style: decimal;
+  }
+  :global(.after__note) {
+    font-size: 0.9rem;
+    opacity: 0.75;
+  }
+  @media (max-width: 900px) {
+    :global(.after) {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: none;
+    }
+    :global(.after > .after__help) {
+      grid-column: 1;
+      grid-row: auto;
+    }
+  }
 </style>
