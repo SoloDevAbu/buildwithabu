@@ -7,7 +7,10 @@ import { PAYMENT_ID, confirmPayment, getOrder, type Order } from "@/lib/orders"
 export const prerender = false
 
 const json = (body: unknown, status = 200) =>
-  new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json", "cache-control": "no-store" } })
+  new Response(JSON.stringify(body), {
+    status,
+    headers: { "content-type": "application/json", "cache-control": "no-store", ...(status === 429 && { "retry-after": "60" }) },
+  })
 
 const describe = async (order: Order, pass: string | undefined) => {
   if (order.status !== "paid") return { state: "blocked" }

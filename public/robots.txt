@@ -1,41 +1,10 @@
-# Search and AI assistants are welcome. Only transactional routes are off limits.
+# Search engines and AI assistants are welcome. Only transactional routes are off limits.
+# One wildcard group on purpose: a named group would replace these rules for that bot.
 User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
 Allow: /
 Disallow: /api/
 Disallow: /download/
 Disallow: /success
-
-User-agent: GPTBot
-Allow: /
-Disallow: /api/
-Disallow: /download/
-
-User-agent: OAI-SearchBot
-Allow: /
-Disallow: /api/
-Disallow: /download/
-
-User-agent: ChatGPT-User
-Allow: /
-Disallow: /api/
-Disallow: /download/
-
-User-agent: ClaudeBot
-Allow: /
-Disallow: /api/
-Disallow: /download/
-
-User-agent: Claude-SearchBot
-Allow: /
-Disallow: /api/
-Disallow: /download/
-
-User-agent: PerplexityBot
-Allow: /
-Disallow: /api/
-Disallow: /download/
-
-User-agent: Google-Extended
-Allow: /
 
 Sitemap: https://buildwithabu.xyz/sitemap.xml

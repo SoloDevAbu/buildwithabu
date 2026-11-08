@@ -23,6 +23,15 @@ const columns = [
     ],
   },
   {
+    title: "for ai agents",
+    links: [
+      ["/llms.txt", "llms.txt"],
+      ["/pricing.md", "Pricing (Markdown)"],
+      ["/SKILL.md", "Agent skill"],
+      ["/sitemap.xml", "Sitemap"],
+    ],
+  },
+  {
     title: "legal",
     links: [
       ["/legal/terms", "Terms"],
@@ -94,7 +103,7 @@ const columns = [
   }
   .cols {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr repeat(4, 1fr);
     gap: 32px;
     margin-top: clamp(40px, 6vw, 72px);
   }

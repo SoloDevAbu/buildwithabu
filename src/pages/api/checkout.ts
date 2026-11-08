@@ -7,7 +7,10 @@ import { createCheckoutUrl } from "@/lib/dodo"
 export const prerender = false
 
 const json = (status: number, body: unknown) =>
-  new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json", "cache-control": "no-store" } })
+  new Response(JSON.stringify(body), {
+    status,
+    headers: { "content-type": "application/json", "cache-control": "no-store", ...(status === 429 && { "retry-after": "60" }) },
+  })
 
 export const POST: APIRoute = async ({ request, clientAddress, cookies }) => {
   const limit = await env.CHECKOUT_LIMIT?.limit({ key: clientAddress })

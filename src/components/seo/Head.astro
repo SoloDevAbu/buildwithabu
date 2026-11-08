@@ -21,6 +21,7 @@ const ogImage = new URL(image, SITE.url).href
 <meta name="description" content={description} />
 {SITE.googleVerification && <meta name="google-site-verification" content={SITE.googleVerification} />}
 {SITE.bingVerification && <meta name="msvalidate.01" content={SITE.bingVerification} />}
+<link rel="alternate" type="text/plain" title="LLM summary" href="/llms.txt" />
 <link rel="canonical" href={canonical || SITE.url} />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
 <meta property="og:site_name" content={SITE.brand} />

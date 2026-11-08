@@ -19,6 +19,8 @@ export const GET: APIRoute = async () => {
 ## Product
 - [How it works](${SITE.url}/how-it-works): the seven stages
 - [Pricing](${SITE.url}/pricing): price and requirements
+- [Pricing in Markdown](${SITE.url}/pricing.md): the same facts as plain text
+- [Agent skill](${SITE.url}/SKILL.md): lets your coding agent check this machine can run the kit
 - [FAQ](${SITE.url}/faq)
 - [Reels](${SITE.url}/reels): example output
 

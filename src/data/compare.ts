@@ -14,7 +14,7 @@ export const COMPARISONS: Comparison[] = [
   {
     slug: "kit-vs-editing-by-hand",
     title: "Abu Reel Kit vs Editing Reels by Hand",
-    description: "When to use an AI agent kit for reels and when a manual editor is still the better choice. An honest comparison.",
+    description: "When an AI agent kit beats editing reels by hand in CapCut or Premiere, and when a manual editor is still the better choice. Time, cost and control compared.",
     heading: "Abu Reel Kit vs editing by hand",
     answer: "Editing by hand is better for filmed footage and work that depends on feel. Abu Reel Kit is better for explainers built from text, cards and motion, where you want a repeatable style without doing each edit yourself.",
     other: "Manual editor",
@@ -33,7 +33,7 @@ export const COMPARISONS: Comparison[] = [
   {
     slug: "kit-vs-hosted-ai-video-tools",
     title: "Abu Reel Kit vs Hosted AI Video Tools",
-    description: "A local, one-time kit compared with hosted AI video apps: cost model, ownership, control and ease of use.",
+    description: "A local, one-time $16 kit compared with hosted AI video apps: monthly cost, who owns the files, how much you control, and which is easier to start with.",
     heading: "Abu Reel Kit vs hosted AI video tools",
     answer: "Hosted AI video tools are easier to start with because they run in a browser. Abu Reel Kit runs on your computer for a one-time price, with a folder you can read and change, but it needs an AI coding agent and some setup.",
     other: "Hosted AI video app",
@@ -52,7 +52,7 @@ export const COMPARISONS: Comparison[] = [
   {
     slug: "kit-vs-building-on-remotion",
     title: "Abu Reel Kit vs Building on Remotion Yourself",
-    description: "Should you build your own reel system on Remotion or start from a kit? What you'd need to build and when DIY makes sense.",
+    description: "Should you build your own reel system on Remotion or start from a kit? What you'd need to build yourself, how long it takes, and when DIY makes more sense.",
     heading: "Abu Reel Kit vs building on Remotion yourself",
     answer: "Building on Remotion yourself gives you full freedom, but you must create the motion system, components, voice, captions, checks and agent workflow. Abu Reel Kit starts you with all of those, and you can still change anything.",
     other: "Remotion from scratch",

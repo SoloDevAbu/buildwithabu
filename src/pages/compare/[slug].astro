@@ -11,7 +11,7 @@ const path = `/compare/${c.slug}`
 ---
 
 <Page
-  title={`${c.title} | Abu Reel Kit`}
+  title={c.title}
   description={c.description}
   {path}
   kicker="compare"
@@ -47,4 +47,15 @@ const path = `/compare/${c.slug}`
   <h2>Choose the other route if</h2>
   <ul>{c.pick.other.map((item) => <li>{item}</li>)}</ul>
   <p><a href="/pricing">See pricing and requirements</a> ({SITE.priceLabel} once).</p>
+  <h2>Other comparisons</h2>
+  <ul>
+    {
+      COMPARISONS.filter((other) => other.slug !== c.slug).map((other) => (
+        <li>
+          <a href={`/compare/${other.slug}`}>{other.heading}</a>
+        </li>
+      ))
+    }
+    <li><a href="/how-it-works">How the kit works, stage by stage</a></li>
+  </ul>
 </Page>

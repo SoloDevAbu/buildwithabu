@@ -8,6 +8,8 @@ export const getStaticPaths = async () => (await getCollection("guides")).map((g
 
 const { guide } = Astro.props
 const { Content } = await render(guide)
+// Every guide links to the others, so none relies on the index page alone for links.
+const related = (await getCollection("guides")).filter((other) => other.id !== guide.id)
 const path = `/guides/${guide.id}`
 const date = guide.data.date.toISOString().slice(0, 10)
 const updated = guide.data.updated?.toISOString().slice(0, 10)
@@ -35,4 +37,14 @@ const updated = guide.data.updated?.toISOString().slice(0, 10)
   <p>
     Written by <a href="/about">{SITE.seller}</a>. <a href="/pricing">Abu Reel Kit</a> runs this kind of workflow from one line, for {SITE.priceLabel} once.
   </p>
+  <h2>More guides</h2>
+  <ul>
+    {
+      related.map((other) => (
+        <li>
+          <a href={`/guides/${other.id}`}>{other.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
 </Page>
