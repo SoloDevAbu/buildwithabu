@@ -35,3 +35,8 @@ const png = new Resvg(svg, { fitTo: { mode: "width", value: 1200 } }).render().a
 mkdirSync("public/og", { recursive: true })
 writeFileSync("public/og/default.png", png)
 console.log(`public/og/default.png ${(png.length / 1024).toFixed(0)} KB`)
+
+// Search engines want a raster logo for the Organization, at least 112px square.
+const logo = new Resvg(readFileSync("public/favicon.svg"), { fitTo: { mode: "width", value: 512 } }).render().asPng()
+writeFileSync("public/logo.png", logo)
+console.log(`public/logo.png ${(logo.length / 1024).toFixed(0)} KB`)

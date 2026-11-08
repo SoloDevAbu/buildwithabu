@@ -38,5 +38,4 @@ Disallow: /download/
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://buildwithabu.xyz/sitemap-index.xml
-Sitemap: https://buildwithabu.xyz/video-sitemap.xml
+Sitemap: https://buildwithabu.xyz/sitemap.xml

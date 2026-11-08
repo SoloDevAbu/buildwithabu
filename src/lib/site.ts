@@ -16,6 +16,12 @@ export const SITE = {
   price: 16,
   currency: "USD",
   priceLabel: "$16",
+  // Paste the codes from Search Console and Bing Webmaster Tools here if you verify with a meta tag.
+  // A DNS record or Search Console import needs neither.
+  googleVerification: "",
+  bingVerification: "",
+  // Public by design: IndexNow checks it at /<key>.txt.
+  indexNowKey: "2dba04ed1fa1aa47c818ef281ab62195",
   description:
     "Abu Reel Kit is a folder you open in your AI coding agent. Type one line and it researches, scripts, voices, captions, builds and renders a finished vertical reel.",
 } as const

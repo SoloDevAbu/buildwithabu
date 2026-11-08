@@ -98,7 +98,10 @@ pnpm reel:add path/to/final.mp4 --title "..." --description "..." --transcript s
 
 ## 6. After launch
 
-- Submit `sitemap-index.xml` and `video-sitemap.xml` in Google Search Console and Bing Webmaster Tools.
+- **Google Search Console:** add a **Domain** property for `buildwithabu.xyz`. With the domain on Cloudflare, Search Console offers to add the DNS record for you. Then submit `https://buildwithabu.xyz/sitemap.xml` under Sitemaps. It lists the page, reel and video sitemaps. If you'd rather verify with a meta tag, paste the code into `googleVerification` in `src/lib/site.ts` and deploy.
+- **Bing Webmaster Tools:** choose **Import from Google Search Console**. It copies the site and sitemap, so no extra verification is needed. The meta tag route uses `bingVerification` the same way.
+- **IndexNow:** after each deploy that changes pages, run `pnpm indexnow`. It tells Bing and other IndexNow engines which URLs changed. The key file is already in `public/`.
+- In Search Console, use URL Inspection > Request indexing for `/`, `/pricing` and `/how-it-works` to speed up the first crawl.
 - Check the homepage and a reel page in Google's Rich Results Test.
 - Have a lawyer read the legal pages if you can. They're well-drafted templates, not legal advice.
 - Dodo's terms allow termination if refund or chargeback rates pass 0.5% of monthly orders, so watch disputes.

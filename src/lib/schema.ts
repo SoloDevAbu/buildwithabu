@@ -27,7 +27,7 @@ export const organization = {
   "@id": ID.org,
   name: SITE.brand,
   url: SITE.url,
-  logo: `${SITE.url}/favicon.svg`,
+  logo: `${SITE.url}/logo.png`,
   email: SITE.email,
   founder: { "@id": ID.person },
   sameAs: [SITE.instagram, SITE.x],

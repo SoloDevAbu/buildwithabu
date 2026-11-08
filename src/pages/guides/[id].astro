@@ -14,7 +14,7 @@ const updated = guide.data.updated?.toISOString().slice(0, 10)
 ---
 
 <Page
-  title={`${guide.data.title} | Abu Reel Kit`}
+  title={guide.data.title.length > 46 ? guide.data.title : `${guide.data.title} | Abu Reel Kit`}
   description={guide.data.description}
   {path}
   kicker="guide"

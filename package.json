@@ -16,6 +16,7 @@
     "typecheck": "astro check",
     "test": "vitest run",
     "deploy": "astro build && wrangler deploy",
+    "indexnow": "node scripts/indexnow.mjs",
     "db:local": "wrangler d1 migrations apply buildwithabu --local",
     "db:remote": "wrangler d1 migrations apply buildwithabu --remote",
     "reel:add": "node scripts/reel-add.mjs",
