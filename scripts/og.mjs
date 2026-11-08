@@ -18,7 +18,7 @@ const abu = `data:image/png;base64,${readFileSync("scripts/assets/abu-present.pn
 const card = el(
   "div",
   { width: 1200, height: 630, padding: 64, flexDirection: "column", justifyContent: "space-between", backgroundColor: "#e8e9e1", color: "#121316", fontFamily: "Inter" },
-  el("div", { fontFamily: "Mono", fontSize: 28, color: "#565962" }, "// reel studio kit"),
+  el("div", { fontFamily: "Mono", fontSize: 28, color: "#565962" }, "// abu reel kit"),
   el(
     "div",
     { flexDirection: "column", fontSize: 104, letterSpacing: -4.5, lineHeight: 1.02 },

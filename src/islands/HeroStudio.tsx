@@ -167,7 +167,7 @@ export default function HeroStudio() {
       </div>
       <div className="rs-term sheet sheet--ink">
         <div className="win-head">
-          <i /> agent · reel-studio-kit
+          <i /> agent · abu-reel-kit
         </div>
         <form onSubmit={submit} className="rs-prompt">
           <label htmlFor="rs-topic">make a reel:</label>

@@ -20,7 +20,7 @@ export default function BoxExplorer() {
   return (
     <Sheet className="box">
       <div className="win-head">
-        <i /> reel-studio-kit/
+        <i /> abu-reel-kit/
       </div>
       <div className="box-grid">
         <ul className="box-tree" role="listbox" aria-label="Folders in the kit">

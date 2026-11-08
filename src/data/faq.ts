@@ -5,13 +5,13 @@ export type Faq = { q: string; a: string; group: "product" | "buying" }
 export const FAQ: Faq[] = [
   {
     group: "product",
-    q: "What is Reel Studio Kit?",
-    a: "Reel Studio Kit is a project folder you open in an AI coding agent such as Claude Code, Codex or Cursor. You type one line, for example “make a reel: 3 sleep mistakes that ruin your mornings”, and the agent researches the topic, writes two scripts, makes the voice and captions, builds the scenes in Remotion, checks its own frames and renders a 1080 × 1920 video.",
+    q: "What is Abu Reel Kit?",
+    a: "Abu Reel Kit is a project folder you open in an AI coding agent such as Claude Code, Codex or Cursor. You type one line, for example “make a reel: 3 sleep mistakes that ruin your mornings”, and the agent researches the topic, writes two scripts, makes the voice and captions, builds the scenes in Remotion, checks its own frames and renders a 1080 × 1920 video.",
   },
   {
     group: "product",
     q: "What do I need to run it?",
-    a: "An AI coding agent you already have access to, plus Node.js 18 or newer, ffmpeg and Python 3.10 to 3.14. The included doctor command installs what it can and prints the exact command for the rest. It has setup paths for Windows, macOS and Linux.",
+    a: "At least one AI coding agent: Claude Code (recommended), Codex, Cursor or Antigravity. You also need Node.js 18 or newer, ffmpeg and Python 3.10 to 3.14. The included doctor command installs what it can and prints the exact command for the rest. It has setup paths for Windows, macOS and Linux.",
   },
   {
     group: "product",

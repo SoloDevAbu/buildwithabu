@@ -24,16 +24,16 @@ const Recovery = () => (
   <>
     <ol className="after__steps">
       <li>
-        Find the email from Dodo Payments called <strong>"Your payment to Build with Abu was successful"</strong>. Check spam too.
+        Find the email from Dodo Payments called <strong>"Your payment to Abu Reel Kit was successful"</strong>. Check spam too.
       </li>
       <li>
         Click <strong>Access in your customer portal</strong>.
       </li>
       <li>
-        Scroll to <strong>License Keys & Downloads</strong>, then click <strong>View</strong> next to Reel Studio Kit download.
+        Scroll to <strong>License Keys & Downloads</strong>, then click <strong>View</strong> next to Abu Reel Kit download.
       </li>
       <li>
-        Click <strong>reel-studio-kit.zip</strong>.
+        Click the <strong>.zip</strong> file to download it.
       </li>
     </ol>
     <p className="after__note">The portal may be headed OutrankBid. That's the business name on our Dodo account.</p>
@@ -167,7 +167,7 @@ export default function SuccessPanel() {
           </p>
         )}
         <a className="btn" href={status.downloadUrl}>
-          Download Reel Studio Kit
+          Download Abu Reel Kit
         </a>
       </div>
       <Sheet className="after__help">

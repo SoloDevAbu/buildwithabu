@@ -11,7 +11,7 @@ export const GET: APIRoute = async () => {
 
 - Price: ${SITE.priceLabel} USD, one time. No subscription and no per-video fee.
 - Sold by ${SITE.seller} (${SITE.brand}), ${SITE.sellerCountry}, through Dodo Payments as Merchant of Record.
-- Needs an AI coding agent (Claude Code, Codex, Cursor or similar), Node.js 18+, ffmpeg and Python 3.10 to 3.14.
+- Needs an AI coding agent (Claude Code recommended, or Codex, Cursor or Antigravity), Node.js 18+, ffmpeg and Python 3.10 to 3.14.
 - Output: 1080 × 1920 video at 30 fps, under 60 seconds, plus caption, hashtags and sources.
 - Refunds: none, except duplicate payments reported within ${REFUND_WINDOW_DAYS} days.
 - Licence: unlimited reels including client work. No sharing or reselling the kit.

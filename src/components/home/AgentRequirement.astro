@@ -1,0 +1,54 @@
+---
+const AGENTS = ["Claude Code", "Codex", "Cursor", "Antigravity"]
+const RECOMMENDED = "Claude Code"
+---
+
+<div class="agents">
+  <p class="lede">You need at least one of these to use the kit. It runs inside your agent, so the agent isn't included, and any plan or usage cost is separate.</p>
+  <ul>
+    {
+      AGENTS.map((agent) => (
+        <li class:list={["sheet", { pick: agent === RECOMMENDED }]} data-dither="sm">
+          <b>{agent}</b>
+          {agent === RECOMMENDED && <span class="mono">recommended</span>}
+        </li>
+      ))
+    }
+  </ul>
+  <p class="note"><b>{RECOMMENDED} is recommended</b> for the highest quality output.</p>
+</div>
+
+<style>
+  .agents {
+    display: grid;
+    gap: 22px;
+  }
+  ul {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+  li {
+    display: grid;
+    align-content: space-between;
+    gap: 22px;
+    min-height: 118px;
+    padding: 18px;
+  }
+  li b {
+    font-weight: 500;
+    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    letter-spacing: -0.025em;
+  }
+  .pick {
+    background: var(--yellow);
+  }
+  .note b {
+    font-weight: 600;
+  }
+  @media (max-width: 760px) {
+    ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -8,7 +8,7 @@ export default function BuyPanel() {
   const [terms, setTerms] = useState(false)
   const [waiver, setWaiver] = useState(false)
   const [state, setState] = useState<State>({ kind: "idle" })
-  const [reels, setReels] = useState(4)
+  const [reels, setReels] = useState(30)
 
   const submit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -42,7 +42,7 @@ export default function BuyPanel() {
         <label htmlFor="reels-count" className="kicker">
           // reels you'd make in the first month: <b>{reels}</b>
         </label>
-        <input id="reels-count" type="range" min={1} max={30} value={reels} onChange={(e) => setReels(Number(e.target.value))} />
+        <input id="reels-count" type="range" min={1} max={45} value={reels} onChange={(e) => setReels(Number(e.target.value))} />
         <p>
           That's <b>${perReel.toFixed(2)}</b> a reel, then $0 from the kit after that. It runs on your machine.
         </p>

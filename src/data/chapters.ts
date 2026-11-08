@@ -11,6 +11,7 @@ export const CHAPTERS = [
   { id: "review", label: "self-review", mood: "slate" },
   { id: "box", label: "the box", mood: "light" },
   { id: "pricing", label: "pricing", mood: "ink" },
+  { id: "agents", label: "requirements", mood: "light" },
   { id: "faq", label: "faq", mood: "light" },
 ] as const satisfies readonly { id: string; label: string; mood: Mood }[]
 

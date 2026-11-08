@@ -10,8 +10,8 @@ const buying = FAQ.filter((f) => f.group === "buying")
 ---
 
 <Layout
-  title="Pricing: Reel Studio Kit for $16, One Time"
-  description="Reel Studio Kit costs $16 once, with no subscription and no per-video fee. See what's included, what you need, and the refund policy before you buy."
+  title="Pricing: Abu Reel Kit for $16, One Time"
+  description="Abu Reel Kit costs $16 once, with no subscription and no per-video fee. See what's included, what you need, and the refund policy before you buy."
   path="/pricing"
   mood="ink"
   jsonLd={[product, breadcrumbs([{ name: "Pricing", path: "/pricing" }]), faqPage(buying)]}
@@ -22,13 +22,13 @@ const buying = FAQ.filter((f) => f.group === "buying")
         <p class="kicker">// pricing</p>
         <h1 class="h2">{SITE.priceLabel}. <span class="em">Once.</span> That's the whole model.</h1>
         <p class="lede">
-          Reel Studio Kit is a one-time purchase of {SITE.priceLabel} USD. You get the full folder, unlimited reels for you and your clients, and updates to version 1. No subscription and no per-video fee.
+          Abu Reel Kit is a one-time purchase of {SITE.priceLabel} USD. You get the full folder, unlimited reels for you and your clients, and updates to version 1. No subscription and no per-video fee.
         </p>
       </header>
       <PriceBlock />
     </div>
   </section>
-  <section class="rest" data-mood="light">
+  <section class="rest" data-mood="ink">
     <div class="wrap">
       <h2 class="h2">Before you <span class="em">pay.</span></h2>
       <FaqList items={buying} />
@@ -43,12 +43,6 @@ const buying = FAQ.filter((f) => f.group === "buying")
   }
   .rest {
     padding-block: clamp(60px, 8vw, 100px);
-    background: var(--paper);
-    color: var(--ink);
-    --fg: var(--ink);
-    --line: var(--ink);
-    --muted: #565962;
-    --accent: #cf4114;
   }
   .rest h2 {
     margin-bottom: 28px;

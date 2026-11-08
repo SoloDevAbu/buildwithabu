@@ -6,7 +6,7 @@ const { reel, eager = false } = Astro.props
 ---
 
 <a class="reel" href={`/reels/${reel.slug}`} data-teaser={reel.teaser}>
-  <img src={reel.poster} alt={`${reel.title}, vertical reel made with Reel Studio Kit`} width="360" height="640" loading={eager ? "eager" : "lazy"} decoding="async" />
+  <img src={reel.poster} alt={`${reel.title}, vertical reel made with Abu Reel Kit`} width="360" height="640" loading={eager ? "eager" : "lazy"} decoding="async" />
   <span class="zones" aria-hidden="true"><i></i><i></i><i></i></span>
   <span class="time mono">{formatDuration(reel.duration_seconds)}</span>
   <span class="title">{reel.title}</span>

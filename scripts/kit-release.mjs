@@ -1,7 +1,7 @@
 // Swaps the zip that Dodo delivers to buyers. Reads DODO_PAYMENTS_API_KEY from the environment or
 // .dev.vars, and the entitlement id from wrangler.jsonc unless you pass one.
 //
-//   pnpm kit:release path/to/reel-studio-kit.zip [--live] [--entitlement ent_...]
+//   pnpm kit:release path/to/abu-reel-kit.zip [--live] [--entitlement ent_...]
 import { existsSync, openAsBlob, readFileSync, statSync } from "node:fs"
 import { parseArgs } from "node:util"
 
@@ -35,8 +35,8 @@ const current = await call(`/entitlements/${entitlement}`)
 const oldFiles = current.integration_config?.digital_files?.files ?? []
 
 const form = new FormData()
-form.append("filename", "reel-studio-kit.zip")
-form.append("file", await openAsBlob(zip, { type: "application/zip" }), "reel-studio-kit.zip")
+form.append("filename", "abu-reel-kit.zip")
+form.append("file", await openAsBlob(zip, { type: "application/zip" }), "abu-reel-kit.zip")
 const { file_id } = await call(`/entitlements/${entitlement}/files`, { method: "POST", body: form })
 
 // Remove old files only after the new one is safely attached.

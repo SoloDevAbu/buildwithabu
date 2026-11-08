@@ -3,21 +3,21 @@
 export const SITE = {
   url: "https://buildwithabu.xyz",
   mediaUrl: "https://media.buildwithabu.xyz",
-  product: "Reel Studio Kit",
-  brand: "Build with Abu",
+  product: "Abu Reel Kit",
+  brand: "Abu Reel Kit",
   seller: "Abu Bakkar Siddique",
   sellerCountry: "India",
   email: "hello@buildwithabu.xyz",
   portalUrl: "https://customer.dodopayments.com/login/bus_0NlpNOOrohD859RHnLSqD",
-  instagram: "https://www.instagram.com/buildwithabu",
-  instagramHandle: "@buildwithabu",
+  instagram: "https://www.instagram.com/buildwithashraful",
+  instagramHandle: "@buildwithashraful",
   x: "https://x.com/AbuBakkar2502",
   xHandle: "@AbuBakkar2502",
   price: 16,
   currency: "USD",
   priceLabel: "$16",
   description:
-    "Reel Studio Kit is a folder you open in your AI coding agent. Type one line and it researches, scripts, voices, captions, builds and renders a finished vertical reel.",
+    "Abu Reel Kit is a folder you open in your AI coding agent. Type one line and it researches, scripts, voices, captions, builds and renders a finished vertical reel.",
 } as const
 
 /** Bump a date when the matching legal page changes. Stored with each buyer's consent. */

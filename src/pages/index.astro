@@ -1,4 +1,5 @@
 ---
+import AgentRequirement from "@/components/home/AgentRequirement.astro"
 import FaqList from "@/components/home/FaqList.astro"
 import Hud from "@/components/home/Hud.astro"
 import Pipeline from "@/components/home/Pipeline.astro"
@@ -22,13 +23,13 @@ const attrs = (id: (typeof CHAPTERS)[number]["id"]) => {
   return { id, "data-chapter": true, "data-mood": c.mood, "data-label": c.label }
 }
 const faqTop = FAQ.filter((f) =>
-  ["What is Reel Studio Kit?", "What do I need to run it?", "Does it need API keys?", "Can I get a refund?", "Who will appear on my card statement?", "Can I use it for client work and sell the videos?"].includes(f.q),
+  ["What is Abu Reel Kit?", "What do I need to run it?", "Does it need API keys?", "Can I get a refund?", "Who will appear on my card statement?", "Can I use it for client work and sell the videos?"].includes(f.q),
 )
 const facts = ["1080 × 1920", "30 fps", "under 60 s", "no API keys", "runs on your machine", "English + Hinglish"]
 ---
 
 <Layout
-  title="Reel Studio Kit: One Line In, Finished Reel Out | $16 Once"
+  title="Abu Reel Kit: One Line In, Finished Reel Out | $16 Once"
   description="An AI coding agent kit that turns one line into a finished vertical reel: research, two scripts, voice, synced captions, scenes, self-review and render. $16 once."
   path="/"
   jsonLd={[product, faqPage(faqTop)]}
@@ -36,7 +37,7 @@ const facts = ["1080 × 1920", "30 fps", "under 60 s", "no API keys", "runs on y
   <section class="hero" {...attrs("hook")}>
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <span class="sticker" data-dither="sm"><small>// for ai coding agents</small><b>Reel Studio Kit</b></span>
+        <span class="sticker" data-dither="sm"><small>// for ai coding agents</small><b>Abu Reel Kit</b></span>
         <h1 class="display">
           One line in.{" "}
           <span class="marked">
@@ -157,10 +158,20 @@ const facts = ["1080 × 1920", "30 fps", "under 60 s", "no API keys", "runs on y
     </div>
   </section>
 
+  <section class="chapter" {...attrs("agents")}>
+    <div class="wrap">
+      <div class="chapter-head">
+        <p class="kicker">// 09 — requirements</p>
+        <h2 class="h2">Bring <span class="em">one</span> AI coding agent.</h2>
+      </div>
+      <AgentRequirement />
+    </div>
+  </section>
+
   <section class="chapter" {...attrs("faq")}>
     <div class="wrap faq-grid">
       <div class="chapter-head">
-        <p class="kicker">// 09 — questions</p>
+        <p class="kicker">// 10 — questions</p>
         <h2 class="h2">Straight <span class="em">answers.</span></h2>
         <p><a class="link" href="/faq">Read all of them</a></p>
       </div>
