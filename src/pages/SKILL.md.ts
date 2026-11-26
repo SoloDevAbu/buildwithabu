@@ -14,7 +14,7 @@ description: Check whether this computer can run ${SITE.product}, a ${SITE.price
 
 ${SITE.description}
 
-Price: ${SITE.priceLabel} USD once. No subscription or per-video fee. No refunds, except a duplicate payment reported within ${REFUND_WINDOW_DAYS} days, so check before buying.
+Price: ${SITE.priceLabel} USD once, taxes included. No subscription or per-video fee. No refunds, except a duplicate payment reported within ${REFUND_WINDOW_DAYS} days, so check before buying.
 
 ## Steps
 

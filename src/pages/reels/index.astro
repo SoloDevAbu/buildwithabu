@@ -32,8 +32,8 @@ const itemList = {
       <p class="lede">Real output, 1080 × 1920 at the source. Open one to watch it with sound and read its transcript.</p>
     </header>
     <div class="grid">
-      {reels.map((reel, i) => <ReelCard reel={reel} eager={i < 4} />)}
-      {reels.length < 8 && <ReelSlots count={8 - reels.length} from={reels.length} />}
+      {reels.map((reel, i) => <ReelCard reel={reel} eager={i < 5} />)}
+      {reels.length === 0 && <ReelSlots count={8} from={0} />}
     </div>
     <p class="back"><a class="btn" href="/pricing">Make your own · {SITE.priceLabel} once</a></p>
   </div>
@@ -50,8 +50,8 @@ const itemList = {
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(46%, 230px), 1fr));
-    gap: clamp(14px, 2vw, 26px);
+    grid-template-columns: repeat(auto-fill, minmax(min(46%, 210px), 1fr));
+    gap: clamp(14px, 2vw, 24px);
   }
   .back {
     margin-top: 44px;

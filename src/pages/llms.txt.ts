@@ -9,7 +9,7 @@ export const GET: APIRoute = async () => {
 
 > ${SITE.description}
 
-- Price: ${SITE.priceLabel} USD, one time. No subscription and no per-video fee.
+- Price: ${SITE.priceLabel} USD, one time, taxes included. No subscription and no per-video fee.
 - Sold by ${SITE.seller} (${SITE.brand}), ${SITE.sellerCountry}, through Dodo Payments as Merchant of Record.
 - Needs an AI coding agent (Claude Code recommended, or Codex, Cursor or Antigravity), Node.js 18+, ffmpeg and Python 3.10 to 3.14.
 - Output: 1080 × 1920 video at 30 fps, under 60 seconds, plus caption, hashtags and sources.

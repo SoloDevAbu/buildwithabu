@@ -101,3 +101,25 @@ if (steps.length && plates.length) {
   )
   steps.forEach((s) => io.observe(s))
 }
+
+// Hover a reel card to play its muted teaser across all pages, including deferred server islands.
+if (matchMedia("(hover: hover)").matches && !calm) {
+  document.addEventListener("pointerover", (event) => {
+    const card = (event.target as HTMLElement | null)?.closest<HTMLElement>(".reel[data-teaser]")
+    if (!card || card.querySelector("video") || !card.dataset.teaser) return
+    const video = document.createElement("video")
+    video.src = card.dataset.teaser
+    video.muted = true
+    video.loop = true
+    video.playsInline = true
+    card.querySelector("img")?.after(video)
+    const cleanup = () => {
+      video.pause()
+      video.removeAttribute("src")
+      video.load()
+      video.remove()
+    }
+    video.play().catch(cleanup)
+    card.addEventListener("pointerleave", cleanup, { once: true })
+  })
+}

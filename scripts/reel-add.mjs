@@ -25,13 +25,14 @@ const { values: args, positionals } = parseArgs({
     topic: { type: "string" },
     transcript: { type: "string" },
     sort: { type: "string", default: "0" },
+    "poster-at": { type: "string", default: "1.5" },
     local: { type: "boolean", default: false },
   },
 })
 
 const input = positionals[0]
 if (!input || !existsSync(input) || !args.title || !args.description) {
-  console.error('Usage: pnpm reel:add <video.mp4> --title "..." --description "..." [--slug x] [--topic "..."] [--transcript file.txt] [--sort 1] [--local]')
+  console.error('Usage: pnpm reel:add <video.mp4> --title "..." --description "..." [--slug x] [--topic "..."] [--transcript file.txt] [--sort 1] [--poster-at 1.5] [--local]')
   process.exit(1)
 }
 
@@ -48,6 +49,9 @@ const probe = JSON.parse(
   execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-select_streams", "v:0", "-show_entries", "stream=width,height", "-of", "json", input]).toString(),
 )
 const duration = Number(probe.format.duration)
+const stream = probe.streams?.[0]
+const outWidth = 720
+const outHeight = stream?.width && stream?.height ? Math.round(((stream.height / stream.width) * outWidth) / 2) * 2 : 1280
 
 const work = mkdtempSync(path.join(tmpdir(), "reel-"))
 try {
@@ -56,10 +60,10 @@ try {
   const poster = path.join(work, "poster.jpg")
 
   // faststart puts the index first, so playback begins before the whole file arrives.
-  const scale = "scale=720:-2:flags=lanczos"
+  const scale = `scale=${outWidth}:-2:flags=lanczos`
   run("ffmpeg", ["-v", "error", "-y", "-i", input, "-vf", scale, "-c:v", "libx264", "-preset", "slow", "-crf", "25", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", video])
   run("ffmpeg", ["-v", "error", "-y", "-i", input, "-t", String(TEASER_SECONDS), "-vf", "scale=360:-2:flags=lanczos", "-c:v", "libx264", "-preset", "slow", "-crf", "28", "-pix_fmt", "yuv420p", "-an", "-movflags", "+faststart", teaser])
-  run("ffmpeg", ["-v", "error", "-y", "-ss", "1.5", "-i", input, "-frames:v", "1", "-vf", "scale=720:-2:flags=lanczos", "-q:v", "4", poster])
+  run("ffmpeg", ["-v", "error", "-y", "-ss", args["poster-at"], "-i", input, "-frames:v", "1", "-vf", scale, "-q:v", "4", poster])
 
   for (const file of [video, teaser, poster]) console.log(path.basename(file), `${(statSync(file).size / 1e6).toFixed(1)} MB`)
 
@@ -73,7 +77,7 @@ try {
   const quote = (v) => (v === null || v === undefined ? "NULL" : `'${String(v).replace(/'/g, "''")}'`)
   const transcript = args.transcript ? readFileSync(args.transcript, "utf8").trim() : null
   const sql = `INSERT OR REPLACE INTO reels (slug, title, description, topic, transcript, duration_seconds, width, height, video_key, poster_key, teaser_key, sort_order, published_at)
-VALUES (${[slug, args.title, args.description, args.topic, transcript].map(quote).join(", ")}, ${duration}, 720, 1280, ${quote(keys.video)}, ${quote(keys.poster)}, ${quote(keys.teaser)}, ${Number(args.sort)}, ${quote(new Date().toISOString())});`
+VALUES (${[slug, args.title, args.description, args.topic, transcript].map(quote).join(", ")}, ${duration}, ${outWidth}, ${outHeight}, ${quote(keys.video)}, ${quote(keys.poster)}, ${quote(keys.teaser)}, ${Number(args.sort)}, ${quote(new Date().toISOString())});`
   const sqlFile = path.join(work, "reel.sql")
   writeFileSync(sqlFile, sql)
   wrangler(["d1", "execute", DATABASE, scope, "--file", sqlFile])

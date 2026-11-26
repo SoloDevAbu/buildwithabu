@@ -6,7 +6,7 @@ export const GET: APIRoute = () =>
   new Response(
     `# Pricing: ${SITE.product}
 
-- Price: ${SITE.priceLabel} USD, one time. Local taxes may be added at checkout.
+- Price: ${SITE.priceLabel} USD, one time, taxes included (GST, VAT, sales tax). No hidden fees.
 - No subscription, no per-video fee, no credits.
 - Includes: the full kit folder, unlimited reels for you and your clients, and updates to version 1.
 - Licence: personal and commercial use. No sharing or reselling the kit itself.

@@ -8,10 +8,10 @@
   "observability": { "enabled": true },
   "vars": {
     // For live: set live_mode, the three live ids below, and the live secrets. See docs/launch.md.
-    "DODO_ENVIRONMENT": "test_mode",
-    "DODO_PRODUCT_ID": "pdt_0NrRGZoUaFcz4q7zIL9EA",
-    "DODO_BRAND_ID": "brnd_0NrRGZbfqpOEyVtwaYjOv",
-    "DODO_ENTITLEMENT_ID": "ent_0NrRGZg4XddrwN7k3mo8n",
+    "DODO_ENVIRONMENT": "live_mode",
+    "DODO_PRODUCT_ID": "pdt_0NrUw5e81Nb37wOv90KGN",
+    "DODO_BRAND_ID": "brnd_0NrUtQNXlD8zH2g164a4X",
+    "DODO_ENTITLEMENT_ID": "ent_0NrUw2OW1DwVHtLYfP14V",
     "PUBLIC_MEDIA_URL": "https://media.buildwithabu.xyz",
   },
   "d1_databases": [
@@ -22,9 +22,7 @@
       "migrations_dir": "migrations",
     },
   ],
-  "r2_buckets": [
-    { "binding": "REELS", "bucket_name": "reels-public" },
-  ],
+  "r2_buckets": [{ "binding": "REELS", "bucket_name": "reels-public" }],
   "ratelimits": [
     {
       "name": "CHECKOUT_LIMIT",

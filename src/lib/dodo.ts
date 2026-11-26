@@ -19,7 +19,7 @@ const dodo = (env: DodoEnv) =>
 
 type ProductFacts = {
   brand_id: string
-  price: { type: string; price?: number; currency?: string; discount?: number; discount_bps?: number; pay_what_you_want?: boolean; purchasing_power_parity?: boolean }
+  price: { type: string; price?: number; currency?: string; discount?: number; discount_bps?: number; pay_what_you_want?: boolean; purchasing_power_parity?: boolean; tax_inclusive?: boolean | null }
   entitlements: { id: string }[]
 }
 
@@ -28,6 +28,7 @@ export const productProblem = (product: ProductFacts, env: Pick<DodoEnv, "DODO_B
   const { price } = product
   if (product.brand_id !== env.DODO_BRAND_ID) return "wrong brand"
   if (price.type !== "one_time_price" || price.price !== PRICE_MINOR || price.currency !== SITE.currency) return "wrong price"
+  if (price.tax_inclusive !== true) return "price is not tax inclusive"
   if (price.pay_what_you_want || price.purchasing_power_parity || price.discount || price.discount_bps) return "price can be lowered"
   if (!product.entitlements.some((e) => e.id === env.DODO_ENTITLEMENT_ID)) return "download not attached"
   return null

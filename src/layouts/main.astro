@@ -6,19 +6,39 @@ import Head from "@/components/seo/Head.astro"
 import Footer from "@/components/Footer.astro"
 import Nav from "@/components/Nav.astro"
 import { organization, person, website } from "@/lib/schema"
+import { SITE } from "@/lib/site"
 
 type Props = {
   title: string
   description: string
   path?: string
   image?: string
+  imageWidth?: number
+  imageHeight?: number
+  video?: string
+  videoWidth?: number
+  videoHeight?: number
   type?: "website" | "article"
   noindex?: boolean
   jsonLd?: object[]
   mood?: "light" | "ink" | "slate"
 }
 
-const { title, description, path, image, type, noindex, jsonLd = [], mood = "light" } = Astro.props
+const {
+  title,
+  description,
+  path,
+  image,
+  imageWidth,
+  imageHeight,
+  video,
+  videoWidth,
+  videoHeight,
+  type,
+  noindex,
+  jsonLd = [],
+  mood = "light",
+} = Astro.props
 const graph = noindex ? [] : [organization, person, website, ...jsonLd]
 ---
 
@@ -29,6 +49,8 @@ const graph = noindex ? [] : [organization, person, website, ...jsonLd]
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#e8e9e1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="dns-prefetch" href={SITE.mediaUrl} />
+    <link rel="preconnect" href={SITE.mediaUrl} crossorigin />
     <link rel="preload" href={interUrl} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={serifUrl} as="font" type="font/woff2" crossorigin />
     <link rel="alternate" type="application/rss+xml" title="Abu Reel Kit guides" href="/rss.xml" />
@@ -36,7 +58,7 @@ const graph = noindex ? [] : [organization, person, website, ...jsonLd]
     <script is:inline>
       document.documentElement.classList.add("js")
     </script>
-    <Head {title} {description} {path} {image} {type} {noindex} jsonLd={graph} />
+    <Head {title} {description} {path} {image} {imageWidth} {imageHeight} {video} {videoWidth} {videoHeight} {type} {noindex} jsonLd={graph} />
     <slot name="head" />
   </head>
   <body>

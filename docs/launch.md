@@ -54,7 +54,7 @@ Test and live are separate in Dodo, so everything is created again.
 1. In live mode, create the same three things:
    - A brand, **Abu Reel Kit**
    - A Digital Files entitlement
-   - A one-time product at **$16 USD**, tax exclusive, with pay-what-you-want and parity pricing off, in that brand, with the entitlement attached
+   - A one-time product at **$16 USD**, tax inclusive, with pay-what-you-want and parity pricing off, in that brand, with the entitlement attached
 2. Upload the real kit:
 
    ```bash

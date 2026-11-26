@@ -5,10 +5,11 @@ type Props = { reel: Reel; eager?: boolean }
 const { reel, eager = false } = Astro.props
 ---
 
-<a class="reel" href={`/reels/${reel.slug}`} data-teaser={reel.teaser}>
-  <img src={reel.poster} alt={`${reel.title}, vertical reel made with Abu Reel Kit`} width="360" height="640" loading={eager ? "eager" : "lazy"} decoding="async" />
+<a class="reel" href={`/reels/${reel.slug}`} data-teaser={reel.teaser} aria-label={`Watch reel: ${reel.title} (${formatDuration(reel.duration_seconds)})`}>
+  <img src={reel.poster} alt={`${reel.title}, vertical reel made with Abu Reel Kit`} width={reel.width} height={reel.height} loading={eager ? "eager" : "lazy"} decoding="async" />
   <span class="zones" aria-hidden="true"><i></i><i></i><i></i></span>
-  <span class="time mono">{formatDuration(reel.duration_seconds)}</span>
+  <span class="play-badge" aria-hidden="true"></span>
+  <span class="time mono" aria-hidden="true">{formatDuration(reel.duration_seconds)}</span>
   <span class="title">{reel.title}</span>
 </a>
 
@@ -24,6 +25,10 @@ const { reel, eager = false } = Astro.props
     background: var(--ink);
     color: #fff;
     text-decoration: none;
+    transition: translate 0.16s var(--spring);
+  }
+  .reel:hover {
+    translate: 0 -3px;
   }
   .reel :global(video),
   img {
@@ -32,6 +37,27 @@ const { reel, eager = false } = Astro.props
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  .play-badge {
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: rgb(18 19 22 / 0.78);
+    border: 1.5px solid rgb(255 255 255 / 0.35);
+    transition: opacity 0.15s ease;
+  }
+  .play-badge::after {
+    content: "";
+    position: absolute;
+    inset: 7px 6px 7px 9px;
+    background: #fff;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+  .reel:has(video) .play-badge {
+    opacity: 0;
   }
   .time {
     position: absolute;

@@ -62,9 +62,11 @@ export const judgePayment = (p: PaymentFacts, sale: SaleConfig): { verdict: Verd
   if (p.discount_id) return { verdict: "review", reason: "discounted" }
   if (p.refund_status) return { verdict: "review", reason: "already refunded" }
   if (p.total_amount <= 0) return { verdict: "review", reason: "nothing was charged" }
-  // Dodo charges in the buyer's currency, so compare in USD whenever one side of the payment is USD.
-  const usd = p.settlement_currency === SITE.currency ? p.settlement_amount : p.currency === SITE.currency ? p.total_amount : null
-  if (usd !== null && usd < PRICE_MINOR) return { verdict: "review", reason: `underpaid: ${usd}` }
+  // The price includes tax, so a USD buyer pays exactly the price. Other currencies are converted,
+  // so the USD settlement can land a little under it from rounding; 2% covers that, not a discount.
+  if (p.currency === SITE.currency && p.total_amount < PRICE_MINOR) return { verdict: "review", reason: `underpaid: ${p.total_amount}` }
+  if (p.currency !== SITE.currency && p.settlement_currency === SITE.currency && p.settlement_amount < PRICE_MINOR * 0.98)
+    return { verdict: "review", reason: `underpaid: ${p.settlement_amount}` }
   return { verdict: "paid" }
 }
 

@@ -184,24 +184,6 @@ const facts = ["1080 × 1920", "30 fps", "under 60 s", "no API keys", "runs on y
 </Layout>
 
 <script>
-  // Hover or tap a reel to play its teaser. Delegated because the wall streams in late.
-  const wall = document.querySelector("[data-wall]")
-  const canHover = matchMedia("(hover: hover)").matches
-  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches
-  if (wall && canHover && !calm) {
-    wall.addEventListener("pointerover", (event) => {
-      const card = (event.target as HTMLElement).closest<HTMLElement>("[data-teaser]")
-      if (!card || card.querySelector("video")) return
-      const video = document.createElement("video")
-      video.src = card.dataset.teaser ?? ""
-      video.muted = true
-      video.loop = true
-      video.playsInline = true
-      card.querySelector("img")?.after(video)
-      video.play().catch(() => video.remove())
-      card.addEventListener("pointerleave", () => video.remove(), { once: true })
-    })
-  }
   document.querySelector<HTMLInputElement>("[data-zones-toggle]")?.addEventListener("change", (event) => {
     document.documentElement.toggleAttribute("data-zones", (event.target as HTMLInputElement).checked)
   })

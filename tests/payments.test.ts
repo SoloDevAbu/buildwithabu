@@ -146,9 +146,10 @@ describe("checkout rules", () => {
 })
 
 describe("tampering", () => {
-  it("accepts a clean sale, tax on top and foreign currencies included", () => {
+  it("accepts a clean tax-inclusive sale and foreign currencies", () => {
     expect(judgePayment(payment(), sale).verdict).toBe("paid")
-    expect(judgePayment(payment({ total_amount: 1888, settlement_amount: 1888 }), sale).verdict).toBe("paid")
+    expect(judgePayment(payment({ total_amount: 1600, settlement_amount: 1356 }), sale).verdict).toBe("paid")
+    expect(judgePayment(payment({ total_amount: 136000, currency: "INR", settlement_amount: 1590 }), sale).verdict).toBe("paid")
     expect(judgePayment(payment({ total_amount: 150000, currency: "INR" }), sale).verdict).toBe("paid")
     expect(judgePayment(payment({ total_amount: 150000, currency: "INR", settlement_amount: 140000, settlement_currency: "INR" }), sale).verdict).toBe("paid")
   })
@@ -156,6 +157,7 @@ describe("tampering", () => {
   it.each([
     ["$0 charged", { total_amount: 0, settlement_amount: 0 }],
     ["$1 charged", { total_amount: 100, settlement_amount: 100 }],
+    ["a converted sale well under the price", { total_amount: 100000, currency: "INR", settlement_amount: 1200 }],
     ["a discount", { discount_id: "dsc_1" }],
     ["two kits", { product_cart: [{ product_id: sale.productId, quantity: 2 }] }],
     ["an extra item", { product_cart: [{ product_id: sale.productId, quantity: 1 }, { product_id: "pdt_x", quantity: 1 }] }],
@@ -261,7 +263,7 @@ describe("product guard", () => {
   const env = { DODO_BRAND_ID: "brnd_abu", DODO_ENTITLEMENT_ID: "ent_kit" }
   const product = (price = {}, over = {}) => ({
     brand_id: "brnd_abu",
-    price: { type: "one_time_price", price: 1600, currency: "USD", discount: 0, pay_what_you_want: false, ...price },
+    price: { type: "one_time_price", price: 1600, currency: "USD", discount: 0, pay_what_you_want: false, tax_inclusive: true, ...price },
     entitlements: [{ id: "ent_kit" }],
     ...over,
   })
@@ -276,6 +278,8 @@ describe("product guard", () => {
     ["a percentage off", product({ discount: 50 })],
     ["parity pricing", product({ purchasing_power_parity: true })],
     ["a subscription", product({ type: "recurring_price" })],
+    ["tax added on top", product({ tax_inclusive: false })],
+    ["tax not set", product({ tax_inclusive: null })],
     ["another brand", product({}, { brand_id: "brnd_other" })],
     ["no download attached", product({}, { entitlements: [] })],
   ])("refuses %s", (_, bad) => expect(productProblem(bad, env)).not.toBeNull())

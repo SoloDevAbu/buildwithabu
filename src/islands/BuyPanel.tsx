@@ -82,7 +82,7 @@ export default function BuyPanel() {
         </p>
       )}
       <p className="buy-fine">
-        Secure checkout by Dodo Payments, our Merchant of Record. Taxes may apply. Your statement will show Dodo Payments.
+        Secure checkout by Dodo Payments, our Merchant of Record. Taxes included, no hidden fees. Your statement will show Dodo Payments.
       </p>
       <style>{`
         .buy { display: grid; gap: 14px; }

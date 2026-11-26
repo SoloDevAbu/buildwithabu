@@ -60,6 +60,7 @@ export const product = {
     url: `${SITE.url}/pricing`,
     price: SITE.price.toFixed(2),
     priceCurrency: SITE.currency,
+    priceSpecification: { "@type": "UnitPriceSpecification", price: SITE.price.toFixed(2), priceCurrency: SITE.currency, valueAddedTaxIncluded: true },
     availability: "https://schema.org/InStock",
     seller: { "@id": ID.org },
     hasMerchantReturnPolicy: {
@@ -111,6 +112,8 @@ export const videoObject = (v: {
   page: string
   duration: number
   date: string
+  width?: number
+  height?: number
   transcript?: string | null
 }) => ({
   "@type": "VideoObject",
@@ -119,6 +122,9 @@ export const videoObject = (v: {
   thumbnailUrl: [v.poster],
   contentUrl: v.url,
   embedUrl: `${SITE.url}${v.page}`,
+  encodingFormat: "video/mp4",
+  ...(v.width ? { width: v.width } : {}),
+  ...(v.height ? { height: v.height } : {}),
   uploadDate: v.date,
   duration: `PT${Math.round(v.duration)}S`,
   ...(v.transcript ? { transcript: v.transcript } : {}),

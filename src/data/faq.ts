@@ -46,7 +46,7 @@ export const FAQ: Faq[] = [
   {
     group: "buying",
     q: "How much does it cost?",
-    a: `${SITE.priceLabel} once, in US dollars. There is no subscription and no per-video fee. Local taxes may be added at checkout depending on where you are.`,
+    a: `${SITE.priceLabel} once, in US dollars. There is no subscription and no per-video fee. That price already includes GST, VAT and any sales tax, so there are no hidden fees at checkout.`,
   },
   {
     group: "buying",
@@ -61,7 +61,7 @@ export const FAQ: Faq[] = [
   {
     group: "buying",
     q: "Who will appear on my card statement?",
-    a: "Dodo Payments is the Merchant of Record for this sale, so your statement and receipt show Dodo Payments, usually starting with DODOPAY_. Dodo also handles the applicable sales tax or VAT.",
+    a: "Dodo Payments is the Merchant of Record for this sale, so your statement and receipt show Dodo Payments, usually starting with DODOPAY_. Dodo also handles the applicable sales tax or VAT, which is already inside the price.",
   },
   {
     group: "buying",
