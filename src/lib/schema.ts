@@ -30,7 +30,7 @@ export const organization = {
   logo: `${SITE.url}/logo.png`,
   email: SITE.email,
   founder: { "@id": ID.person },
-  sameAs: [SITE.instagram, SITE.x],
+  sameAs: [SITE.instagram, SITE.x, SITE.github],
   contactPoint: { "@type": "ContactPoint", contactType: "customer support", email: SITE.email },
 }
 

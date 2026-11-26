@@ -13,6 +13,7 @@ export const SITE = {
   instagramHandle: "@buildwithashraful",
   x: "https://x.com/AbuBakkar2502",
   xHandle: "@AbuBakkar2502",
+  github: "https://github.com/SoloDevAbu/buildwithabu",
   price: 16,
   currency: "USD",
   priceLabel: "$16",
